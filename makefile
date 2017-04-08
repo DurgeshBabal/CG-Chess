@@ -2,7 +2,7 @@ CC=g++
 CFLAGS=
 LIBS= -lglut -lGL -lGLU
 RM=rm -rf
-OUT=chess
+OUT=chess.app
 
 all: build
 
@@ -14,7 +14,7 @@ debug: CFLAGS+=-DDEBUG_ON
 debug: build
 
 main.o: main.cpp
-	$(CC) $(CFLAGS) main.cpp $(LIBS)
+	$(CC) $(CFLAGS) -c main.cpp $(LIBS)
 
 clean:
 	$(RM) *.o $(OUT)
