@@ -14,7 +14,7 @@ debug: CFLAGS+=-DDEBUG_ON
 debug: build
 
 main.o: main.cpp
-	$(CC) $(CFLAGS) main.cpp $(LIBS) -o main
+	$(CC) $(CFLAGS) main.cpp $(LIBS)
 
 clean:
 	$(RM) *.o $(OUT)
