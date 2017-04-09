@@ -4,7 +4,7 @@
 /*
     tmatrix = {x1,y1,x2,y2,x3,y3};
 */
-shapes::triange(GLfloat *vertices)
+int shapes::triange(GLfloat *vertices)
 {
     // activate and specify pointer to vertex array
     glEnableClientState(GL_VERTEX_ARRAY);
