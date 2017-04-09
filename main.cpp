@@ -1,5 +1,6 @@
 // main.cpp
 // headers
+#include <iostream>
 #include <stdio.h>
 
 // graphics headers
@@ -9,7 +10,7 @@
 #include <math.h>
 
 // custom headers
-
+#include "shapes.h"
 
 // Global definations
 char application_name[]="2D Chess";
