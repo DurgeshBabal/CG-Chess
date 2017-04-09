@@ -9,23 +9,13 @@
 // static headers
 #include <math.h>
 
-// custom class headers
+// custom headers
 
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT);
-    
-    glFlush();
-}
 
-void myinit()
-{
-  glClearColor(1,1,1,1);
-  glColor3f(1,0,0);
-  glPointSize(3);
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-  gluOrtho2D(0,500,0,500);
+    glFlush();
 }
 
 // main of the application
@@ -37,7 +27,12 @@ int main(int argc, char* argv[])
     glutInitWindowPosition(0,0);
     glutCreateWindow("Chess");
     glutDisplayFunc(display);
-    myinit();
+    glClearColor(1,1,1,1);
+    glColor3f(1,0,0);
+    glPointSize(3);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluOrtho2D(0,500,0,500);
     glutMainLoop();
     return 0;
 }
