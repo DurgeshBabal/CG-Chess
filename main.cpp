@@ -1,5 +1,4 @@
 // main.cpp
-
 // headers
 #include <stdio.h>
 
@@ -11,10 +10,17 @@
 
 // custom headers
 
+
+// Global definations
+char application_name[]="2D Chess";
+
 void display()
 {
+    // clear the screen
     glClear(GL_COLOR_BUFFER_BIT);
 
+
+    // flush the buffer on the display
     glFlush();
 }
 
@@ -25,14 +31,18 @@ int main(int argc, char* argv[])
     glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB);
     glutInitWindowSize(500,500);
     glutInitWindowPosition(0,0);
-    glutCreateWindow("Chess");
+    glutCreateWindow(application_name);
     glutDisplayFunc(display);
-    glClearColor(1,1,1,1);
+
+    // configuration settings
+    glClearColor(0.5,0.5,0.5,0.5);      // set background a grey
     glColor3f(1,0,0);
     glPointSize(3);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluOrtho2D(0,500,0,500);
+
+    // Main Loop function
     glutMainLoop();
     return 0;
 }
