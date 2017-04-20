@@ -10,10 +10,8 @@ addons:
   apt:
     packages:
       - freeglut3
+      - freeglut3-dev
       - mesa-utils
-before_install:
-- sudo apt-get update -qq
-- sudo apt-get install -qq freeglut3 mesa-utils
 script: make
 notifications:
   email: false
