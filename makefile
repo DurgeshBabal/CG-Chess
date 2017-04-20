@@ -9,7 +9,7 @@ OUT=chess.app
 
 all: build
 
-build: main.o
+build: main.o chessboard.o shapes.o
 	$(CXX) $(CXXFLAGES) main.cpp shapes.cpp chessboard.cpp -o $(OUT) $(LDFLAGES)
 	$(RM) *.o
 
