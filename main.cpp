@@ -11,29 +11,20 @@
 
 // custom headers
 #include "shapes.h"
+#include "chessboard.h"
 
-// Global definations
+// Global definations or System wide configuration
 char application_name[]="2D Chess";
+int WindowsHeight = 670;
+int WindowsWidth = 1024;
 
 void display()
 {
     // clear the screen
     glClear(GL_COLOR_BUFFER_BIT);
 
-    shapes testshape;
-
-    // GLfloat trianglevertices[]={100,100,300,100,200,400};
-    // glColor3f(1,0,0);
-    // testshape.triangle(trianglevertices);
-
-    GLfloat squarevertices[]={100,100,400,100,400,400,100,400};
-    glColor3f(1,0,0);
-    testshape.polygon(squarevertices);
-
-    //GLfloat v[3][2]={{100,100},{300,100},{200,400}};
-
-    //testshape.square(trianglevertices);
-
+    ChessBoard Board;
+    Board.DrawChessBoard(300,10,80);
     // flush the buffer on the display
     glFlush();
 }
@@ -43,7 +34,7 @@ int main(int argc, char* argv[])
 {
     glutInit(&argc,argv);
     glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB);
-    glutInitWindowSize(500,500);
+    glutInitWindowSize(WindowsWidth,WindowsHeight);
     glutInitWindowPosition(0,0);
     glutCreateWindow(application_name);
     glutDisplayFunc(display);
@@ -54,7 +45,7 @@ int main(int argc, char* argv[])
     glPointSize(3);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluOrtho2D(0,500,0,500);
+    gluOrtho2D(0,WindowsWidth,0,WindowsHeight);
 
     // Main Loop function
     glutMainLoop();
