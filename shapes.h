@@ -6,10 +6,10 @@
 
 class shapes
 {
-        int x,y;    // mid point coordinates
+        GLfloat x,y;    // mid point coordinates
     public:
         // contructors and destructors
-        shapes();
+        //shapes();
         // ~shapes() = default;
         // shapes(const shapes& other) = default;
         // shapes(shapes&& other) = default;
@@ -17,7 +17,13 @@ class shapes
         // shapes& operator=(shapes&& other) = default;
 
         // custom function
-        int triange(GLfloat *vertices);
+        int setmidpoint(GLfloat tx, GLfloat ty);
+        // vertices = {x1,y1,x2,y2,x3,y3}
+        int triangle(GLfloat *vertices);
+        // vertices = {x1,y1,x2,y2,x3,y3,x4,y4}
+        int polygon(GLfloat *vertices);
+
+
 };
 
 #endif
