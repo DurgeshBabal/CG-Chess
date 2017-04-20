@@ -17,6 +17,7 @@
 char application_name[]="2D Chess";
 int WindowsHeight = 670;
 int WindowsWidth = 1024;
+int ChessBoardSquareSize = 80;
 
 void display()
 {
@@ -24,7 +25,7 @@ void display()
     glClear(GL_COLOR_BUFFER_BIT);
 
     ChessBoard Board;
-    Board.DrawChessBoard(300,10,80);
+    Board.DrawChessBoard(300,10,ChessBoardSquareSize);
     // flush the buffer on the display
     glFlush();
 }
