@@ -20,6 +20,19 @@ void display()
     // clear the screen
     glClear(GL_COLOR_BUFFER_BIT);
 
+    shapes testshape;
+
+    // GLfloat trianglevertices[]={100,100,300,100,200,400};
+    // glColor3f(1,0,0);
+    // testshape.triangle(trianglevertices);
+
+    GLfloat squarevertices[]={100,100,400,100,400,400,100,400};
+    glColor3f(1,0,0);
+    testshape.polygon(squarevertices);
+
+    //GLfloat v[3][2]={{100,100},{300,100},{200,400}};
+
+    //testshape.square(trianglevertices);
 
     // flush the buffer on the display
     glFlush();
@@ -37,7 +50,7 @@ int main(int argc, char* argv[])
 
     // configuration settings
     glClearColor(0.5,0.5,0.5,0.5);      // set background a grey
-    glColor3f(1,0,0);
+    // glColor3f(1,0,0);
     glPointSize(3);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
