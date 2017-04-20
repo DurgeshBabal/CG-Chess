@@ -1,13 +1,7 @@
-// implementation of the class shapess
+// implementation of the class shapes
 #include "shapes.h"
 
-int shapes::setmidpoint(GLfloat tx, GLfloat ty)
-{
-    return 1;       // sucessful
-}
-/*
-    vertices = {x1,y1,x2,y2,x3,y3};
-*/
+// vertices = {x1,y1,x2,y2,x3,y3};
 int shapes::triangle(GLfloat *vertices)
 {
     // glColor3f(1,1,0);
