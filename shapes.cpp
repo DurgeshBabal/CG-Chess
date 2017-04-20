@@ -2,7 +2,7 @@
 #include "shapes.h"
 
 // vertices = {x1,y1,x2,y2,x3,y3};
-int shapes::triangle(GLfloat *vertices)
+int shapes::Triangle(GLfloat *vertices)
 {
     // glColor3f(1,1,0);
     // activate and specify pointer to vertex array
@@ -17,7 +17,7 @@ int shapes::triangle(GLfloat *vertices)
 }
 
 // vertices = {x1,y1,x2,y2,x3,y3,x4,y4};
-int shapes::polygon(GLfloat *vertices)
+int shapes::Polygon(GLfloat *vertices)
 {
     // activate and specify pointer to vertex array
     glEnableClientState(GL_VERTEX_ARRAY);

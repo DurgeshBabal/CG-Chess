@@ -17,9 +17,9 @@ class shapes
 
         // custom function
         // vertices = {x1,y1,x2,y2,x3,y3}
-        int triangle(GLfloat *vertices);
+        int Triangle(GLfloat *vertices);
         // vertices = {x1,y1,x2,y2,x3,y3,x4,y4}
-        int polygon(GLfloat *vertices);
+        int Polygon(GLfloat *vertices);
 
 
 };
