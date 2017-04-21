@@ -5,8 +5,8 @@ A simple 2 player chess game designed as the part of Course work
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Amanskywalker/CG-Chess/issues)
 [![Issue Count](https://codeclimate.com/github/Amanskywalker/CG-Chess/badges/issue_count.svg)](https://codeclimate.com/github/Amanskywalker/CG-Chess)
 [![Test Coverage](https://codeclimate.com/github/Amanskywalker/CG-Chess/badges/coverage.svg)](https://codeclimate.com/github/Amanskywalker/CG-Chess/coverage)
-[![Code Climate](https://codeclimate.com/github/Amanskywalker/CG-Chess/badges/gpa.svg)](https://codeclimate.com/github/Amanskywalker/CG-Chess)
-
+[![CodeFactor](https://www.codefactor.io/repository/github/amanskywalker/cg-chess/badge)](https://www.codefactor.io/repository/github/amanskywalker/cg-chess)
+[![BCH compliance](https://bettercodehub.com/edge/badge/Amanskywalker/CG-Chess)](https://bettercodehub.com/)
 
 ### Dependencies
  - c++ 4.8.4
