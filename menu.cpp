@@ -1,10 +1,13 @@
 // source for menu functions
 
-void MainMenu()
+#include "menu.h"
+
+void CreateMainMenu()
 {
     glutCreateMenu(MainMenu);
         glutAddMenuEntry("New Game", 1);
         glutAddMenuEntry("Exit", 2);
+    glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
 
 void MainMenu(int id)
@@ -16,4 +19,5 @@ void MainMenu(int id)
         case 2: exit(0); break; // exit the game
         default: break;
     }
+    glutPostRedisplay();
 }
