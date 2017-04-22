@@ -14,3 +14,14 @@ A simple 2 player chess game designed as the part of Course work
  - GNU Make 3.81
  - OpenGL version string: 3.0
  - Mesa 11.2.0
+
+### Instructions
+ - Make sure above listed Dependencies are installed
+ - Clone or Download (Zip) the Repository
+ - Nagivate to the Root of the Repository
+ - Use `make` Command to Build the Game from the Source code
+ - Use `./chess.app` to Run and Play the game
+ - If you wish to install it system wide then use `make install`
+
+### Contributions are welcome
+  - Please Read contributions.md before sending the pull request 
