@@ -9,7 +9,7 @@ OUT=chess.app
 
 all: build
 
-build: main.o chessboard.o shapes.o
+build: main.o chessboard.o menu.o shapes.o
 	$(CXX) $(CXXFLAGES) main.cpp shapes.cpp chessboard.cpp -o $(OUT) $(LDFLAGES)
 	$(RM) *.o
 
@@ -21,6 +21,9 @@ chessboard.o: chessboard.cpp chessboard.h
 
 main.o: main.cpp
 	$(CXX) $(CXXFLAGES) -c main.cpp $(LDFLAGES)
+
+menu.o: menu.cpp menu.h
+	$(CXX) $(CXXFLAGES) -c menu.cpp
 
 shapes.o: shapes.cpp shapes.h
 	$(CXX) $(CXXFLAGES) -c shapes.cpp

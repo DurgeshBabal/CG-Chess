@@ -10,8 +10,10 @@
 #include <math.h>
 
 // custom headers
-#include "shapes.h"
 #include "chessboard.h"
+#include "menu.h"
+#include "shapes.h"
+
 
 // Global definations or System wide configuration
 char application_name[]="2D Chess";
@@ -23,7 +25,7 @@ void display()
 {
     // clear the screen
     glClear(GL_COLOR_BUFFER_BIT);
-
+    MainMenu();
     ChessBoard Board;
     Board.DrawChessBoard(300,10,ChessBoardSquareSize);
     // flush the buffer on the display
