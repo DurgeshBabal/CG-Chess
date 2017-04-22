@@ -25,7 +25,7 @@ void display()
 {
     // clear the screen
     glClear(GL_COLOR_BUFFER_BIT);
-    MainMenu();
+    
     ChessBoard Board;
     Board.DrawChessBoard(300,10,ChessBoardSquareSize);
     // flush the buffer on the display
@@ -40,6 +40,9 @@ int main(int argc, char* argv[])
     glutInitWindowSize(WindowsWidth,WindowsHeight);
     glutInitWindowPosition(0,0);
     glutCreateWindow(application_name);
+
+    CreateMainMenu();
+
     glutDisplayFunc(display);
 
     // configuration settings
