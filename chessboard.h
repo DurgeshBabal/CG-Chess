@@ -7,7 +7,7 @@
 
 #include "shapes.h"
 
-class ChessBoard :private shapes
+class ChessBoard :private BasicShapes
 {
         // to draw black square
         int BlackSquare(GLfloat *vertices);

@@ -8,7 +8,7 @@
 // to generate the main menu
 void CreateMainMenu();
 
-// to handle main menu  function calls
+// to handle main menu function calls
 void MainMenu(int id);
 
 #endif

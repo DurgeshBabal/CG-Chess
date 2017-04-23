@@ -25,9 +25,13 @@ void display()
 {
     // clear the screen
     glClear(GL_COLOR_BUFFER_BIT);
-    
+
+    BasicShapes testobject;
+    glColor3f(0,1,0);
+    testobject.DrawArcFilled(100,100,90,0,6.3,100);
+
     ChessBoard Board;
-    Board.DrawChessBoard(300,10,ChessBoardSquareSize);
+    Board.DrawChessBoard(250,10,ChessBoardSquareSize);
     // flush the buffer on the display
     glFlush();
 }

@@ -88,7 +88,7 @@ int BasicShapes::DrawCircleFilled(float cx, float cy, float r, int num_segments)
 // cx, cy = center x, y coordinates
 // r = radius
 // start_angle =  starting angle
-// arc_angle = total angle for the arch 
+// arc_angle = total angle for the arc
 // num_segments = number of segments it form to complete the circle (more segment better circle)
 int BasicShapes::DrawArc(float cx, float cy, float r, float start_angle, float arc_angle, int num_segments)
 {
@@ -116,6 +116,43 @@ int BasicShapes::DrawArc(float cx, float cy, float r, float start_angle, float a
 		x *= radial_factor;
 		y *= radial_factor;
 	}
+	glEnd();
+    return 1;
+}
+
+// cx, cy = center x, y coordinates
+// r = radius
+// start_angle =  starting angle
+// arc_angle = total angle for the arc
+// num_segments = number of segments it form to complete the circle (more segment better circle)
+int BasicShapes::DrawArcFilled(float cx, float cy, float r, float start_angle, float arc_angle, int num_segments)
+{
+	float theta = arc_angle / float(num_segments - 1);//theta is now calculated from the arc angle instead, the - 1 bit comes from the fact that the arc is open
+
+	float tangetial_factor = tanf(theta);
+
+	float radial_factor = cosf(theta);
+
+
+	float x = r * cosf(start_angle); //we now start at the start angle
+	float y = r * sinf(start_angle);
+
+	glBegin(GL_POLYGON);
+    glVertex2f(cx, cy);
+	for(int ii = 0; ii < num_segments; ii++)
+	{
+		glVertex2f(x + cx, y + cy);
+
+		float tx = -y;
+		float ty = x;
+
+		x += tx * tangetial_factor;
+		y += ty * tangetial_factor;
+
+		x *= radial_factor;
+		y *= radial_factor;
+	}
+    glVertex2f(cx, cy);
 	glEnd();
     return 1;
 }

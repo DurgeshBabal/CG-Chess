@@ -6,7 +6,7 @@ int ChessBoard::BlackSquare(GLfloat *vertices)
 {
     //glColor3f(0,0,0);
     glColor3f((float)153/255, (float)51/255, (float)0/255);
-    Polygon(vertices);
+    DrawQuad(vertices);
 }
 
 // to draw white square
@@ -14,7 +14,7 @@ int ChessBoard::WhiteSquare(GLfloat *vertices)
 {
     //glColor3f(1,1,1);
     glColor3f((float)255/255, (float)230/255, (float)153/255);
-    Polygon(vertices);
+    DrawQuad(vertices);
 }
 
 int ChessBoard::DrawChessBoard(GLfloat x0, GLfloat y0, GLfloat size)

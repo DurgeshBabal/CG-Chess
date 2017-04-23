@@ -39,6 +39,14 @@ class BasicShapes
         // num_segments = number of segments it form to complete the circle (more segment better circle)
         int DrawArc(float cx, float cy, float r, float start_angle, float arc_angle, int num_segments);
 
+        // cx, cy = center x, y coordinates
+        // r = radius
+        // start_angle =  starting angle
+        // arc_angle = total angle for the arch
+        // num_segments = number of segments it form to complete the circle (more segment better circle)
+        int DrawArcFilled(float cx, float cy, float r, float start_angle, float arc_angle, int num_segments);
+
+
 };
 
 #endif
