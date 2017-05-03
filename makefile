@@ -9,8 +9,8 @@ OUT=chess.app
 
 all: build
 
-build: main.o chessboard.o menu.o shapes.o
-	$(CXX) $(CXXFLAGES) main.cpp chessboard.cpp menu.cpp shapes.cpp -o $(OUT) $(LDFLAGES)
+build: main.o chessboard.o menu.o piece.o shapes.o
+	$(CXX) $(CXXFLAGES) main.cpp chessboard.cpp menu.cpp piece.cpp shapes.cpp -o $(OUT) $(LDFLAGES)
 	$(RM) *.o
 
 debug: CFLAGS+=-DDEBUG_ON
@@ -24,6 +24,9 @@ main.o: main.cpp
 
 menu.o: menu.cpp menu.h
 	$(CXX) $(CXXFLAGES) -c menu.cpp
+
+piece.o: piece.cpp piece.h
+	$(CXX) $(CXXFLAGES) -c piece.cpp
 
 shapes.o: shapes.cpp shapes.h
 	$(CXX) $(CXXFLAGES) -c shapes.cpp

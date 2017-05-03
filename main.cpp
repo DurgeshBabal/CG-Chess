@@ -12,6 +12,7 @@
 // custom headers
 #include "chessboard.h"
 #include "menu.h"
+#include "piece.h"
 #include "shapes.h"
 
 
@@ -26,12 +27,23 @@ void display()
     // clear the screen
     glClear(GL_COLOR_BUFFER_BIT);
 
+    // piece display
+    Piece TestPiece;
+
     // BasicShapes testobject;
     // glColor3f(0,1,0);
     // testobject.DrawArcFilled(100,100,90,0,6.3,100);
 
     ChessBoard Board;
     Board.DrawChessBoard(250,10,ChessBoardSquareSize);
+
+    glColor3f(1,1,1);
+    TestPiece.Pawn(250,10,ChessBoardSquareSize);
+    TestPiece.Pawn(250,10+ChessBoardSquareSize,ChessBoardSquareSize);
+
+    glColor3f(0,0,0);
+    TestPiece.Pawn(250+ChessBoardSquareSize,10,ChessBoardSquareSize);
+    TestPiece.Pawn(250+ChessBoardSquareSize,10+ChessBoardSquareSize,ChessBoardSquareSize);
     // flush the buffer on the display
     glFlush();
 }
