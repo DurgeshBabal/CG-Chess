@@ -30,7 +30,7 @@ A simple 2 player chess game designed as the part of Course work
 
 CG-Chess A simple 2 player chess game.
 
-Copyright (C) 2017  {name of authors}
+Copyright (C) 2017  Aman Durgesh
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU LESSER General Public License as published by
