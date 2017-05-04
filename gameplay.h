@@ -8,7 +8,6 @@ class GamePlay
         int SideColor;
         int xmin, ymin;
         int xmax, ymax;
-        int xmid, ymid;
 
     public:
         // GamePlay();

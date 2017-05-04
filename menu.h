@@ -47,11 +47,8 @@ class Menu
 
 };
 
-// to generate the menu
-//  MenuName[] = Name of the menu
-//  x,y = the start coordnates of the menu
-//  n = number of the items it contains
+// Function to create a main menu
+void CreateMainMenu(Menu MainMenu[], GLfloat X, GLfloat Y, GLfloat);
 
-// to handle main menu function calls
 
 #endif

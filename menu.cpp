@@ -35,3 +35,8 @@ int Menu::AddActioId(int TempActionId)
 
     // operation sucessfull so return true
 }
+
+void CreateMainMenu()
+{
+    
+}
