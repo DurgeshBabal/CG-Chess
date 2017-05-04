@@ -1,4 +1,4 @@
-// defines the piece codes
+// defines the piece class source
 
 #include "piece.h"
 #include <GL/glut.h>

@@ -2,22 +2,35 @@
 
 #include "menu.h"
 
-void CreateMainMenu()
+int Menu::IsInside(int MouseX, int MouseY)
 {
-    glutCreateMenu(MainMenu);
-        glutAddMenuEntry("New Game", 1);
-        glutAddMenuEntry("Exit", 0);
-    glutAttachMenu(GLUT_RIGHT_BUTTON);
+    if(MouseX>x && MouseX<x+l)
+
 }
 
-void MainMenu(int id)
+int Menu::AddName(char TempName[], int TempFontSize, char TempFontFamily[])
 {
-    switch (id)
-    {
-        case 0: exit(0); break; // exit the game
-            break;
-        case 2:  // clear board
-        default: break;
-    }
-    glutPostRedisplay();
+    strcpy(TempName, Name);
+    FontSize = TempFontSize;
+    strcpy(TempFontFamily, FontFamily);
+
+    // operation sucessfull so return true
+    return 1;
+}
+
+int Menu::AddCoordinates(GLfloat tx, GLfloat ty, GLfloat tl)
+{
+    x = tx;
+    y = ty;
+    l = tl;
+
+    // operation sucessfull so return true
+    return 1;
+}
+
+int Menu::AddActioId(int TempActionId)
+{
+    ActionId = TempActionId;
+
+    // operation sucessfull so return true
 }

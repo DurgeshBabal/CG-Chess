@@ -37,10 +37,12 @@ void display()
     ChessBoard Board;
     Board.DrawChessBoard(250,10,ChessBoardSquareSize);
 
+    // white side
     glColor3f(1,1,1);
     TestPiece.Pawn(250,10,ChessBoardSquareSize);
     TestPiece.Pawn(250,10+ChessBoardSquareSize,ChessBoardSquareSize);
 
+    // black side
     glColor3f(0,0,0);
     TestPiece.Pawn(250+ChessBoardSquareSize,10,ChessBoardSquareSize);
     TestPiece.Pawn(250+ChessBoardSquareSize,10+ChessBoardSquareSize,ChessBoardSquareSize);
