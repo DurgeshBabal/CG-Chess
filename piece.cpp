@@ -42,7 +42,25 @@ int Piece::Rook(GLfloat x, GLfloat y, GLfloat l)
 
 int Piece::Knight(GLfloat x, GLfloat y, GLfloat l)
 {
+    GLfloat VerticesRectangle[]={ x+(7*l/25),y+(3*l/25), x+(7*l/25),y+(6*l/25),
+                                   x+(18*l/25),y+(6*l/25), x+(18*l/25),y+(3*l/25)};
+    DrawQuad(VerticesRectangle);
 
+    GLfloat VerticesRectangle1[]={ x+(7*l/25),y+(6*l/25), x+(9*l/25),y+(7*l/25),
+                                   x+(15*l/25),y+(7*l/25), x+(18*l/25),y+(6*l/25)};
+    DrawQuad(VerticesRectangle1);
+
+    GLfloat VerticesRectangle2[]={ x+(9*l/25),y+(7*l/25), x+(9*l/25),y+(15*l/25),
+                                   x+(14*l/25),y+(14*l/25), x+(15*l/25),y+(7*l/25)};
+    DrawQuad(VerticesRectangle2);
+
+    GLfloat VerticesRectangle3[]={ x+(9*l/25),y+(15*l/25), x+(12*l/25),y+(20*l/25),
+                                   x+(16*l/25),y+(16*l/25), x+(14*l/25),y+(14*l/25)};
+    DrawQuad(VerticesRectangle3);
+
+    GLfloat VerticesRectangle4[]={ x+(12*l/25),y+(20*l/25), x+(17.5*l/25),y+(20*l/25),
+                                   x+(20.5*l/25),y+(14*l/25), x+(19*l/25),y+(12*l/25)};
+    DrawQuad(VerticesRectangle4);
 }
 
 int Piece::Bishop(GLfloat x, GLfloat y, GLfloat l)

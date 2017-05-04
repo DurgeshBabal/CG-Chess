@@ -39,13 +39,13 @@ void display()
 
     // white side
     glColor3f(1,1,1);
-    TestPiece.Bishop(250,10,ChessBoardSquareSize);
-    TestPiece.Bishop(250,10+ChessBoardSquareSize,ChessBoardSquareSize);
+    TestPiece.Knight(250,10,ChessBoardSquareSize);
+    TestPiece.Knight(250,10+ChessBoardSquareSize,ChessBoardSquareSize);
 
     // black side
     glColor3f(0,0,0);
-    TestPiece.Bishop(250+ChessBoardSquareSize,10,ChessBoardSquareSize);
-    TestPiece.Bishop(250+ChessBoardSquareSize,10+ChessBoardSquareSize,ChessBoardSquareSize);
+    TestPiece.Knight(250+ChessBoardSquareSize,10,ChessBoardSquareSize);
+    TestPiece.Knight(250+ChessBoardSquareSize,10+ChessBoardSquareSize,ChessBoardSquareSize);
     // flush the buffer on the display
     glFlush();
 }
