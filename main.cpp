@@ -39,13 +39,13 @@ void display()
 
     // white side
     glColor3f(1,1,1);
-    TestPiece.Pawn(250,10,ChessBoardSquareSize);
-    TestPiece.Pawn(250,10+ChessBoardSquareSize,ChessBoardSquareSize);
+    TestPiece.Bishop(250,10,ChessBoardSquareSize);
+    TestPiece.Bishop(250,10+ChessBoardSquareSize,ChessBoardSquareSize);
 
     // black side
     glColor3f(0,0,0);
-    TestPiece.Pawn(250+ChessBoardSquareSize,10,ChessBoardSquareSize);
-    TestPiece.Pawn(250+ChessBoardSquareSize,10+ChessBoardSquareSize,ChessBoardSquareSize);
+    TestPiece.Bishop(250+ChessBoardSquareSize,10,ChessBoardSquareSize);
+    TestPiece.Bishop(250+ChessBoardSquareSize,10+ChessBoardSquareSize,ChessBoardSquareSize);
     // flush the buffer on the display
     glFlush();
 }
@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
     glutInitWindowPosition(0,0);
     glutCreateWindow(application_name);
 
-    CreateMainMenu();
+    //CreateMainMenu();
 
     glutDisplayFunc(display);
 

@@ -4,15 +4,16 @@
 
 int Menu::IsInside(int MouseX, int MouseY)
 {
-    if(MouseX>x && MouseX<x+l)
-
+    if( ( MouseX > x && MouseX < x+l ) && ( MouseY < y && MouseY > y-l ) )
+        return ActionId;
+    return 0;
 }
 
 int Menu::AddName(char TempName[], int TempFontSize, char TempFontFamily[])
 {
-    strcpy(TempName, Name);
+    strcpy(Name, TempName);
     FontSize = TempFontSize;
-    strcpy(TempFontFamily, FontFamily);
+    strcpy(FontFamily, TempFontFamily);
 
     // operation sucessfull so return true
     return 1;
