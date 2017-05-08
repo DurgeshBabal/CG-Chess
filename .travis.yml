@@ -1,0 +1,20 @@
+language: cpp
+sudo: required
+dist: trusty
+compiler:
+- gcc
+- clang
+os:
+- linux
+addons:
+  apt:
+    packages:
+      - freeglut3
+      - freeglut3-dev
+      - mesa-utils
+script: make
+notifications:
+  email: false
+branches:
+  only:
+  - master
