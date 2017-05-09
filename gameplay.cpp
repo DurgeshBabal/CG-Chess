@@ -50,43 +50,60 @@ GamePlay::GamePlay(const GamePlay &obj)
     y = obj.y;
     PieceId = obj.PieceId;
 }
+
 int GamePlay::GetSquareIdX()
 {
     return SquareIdX;
 }
+
 int GamePlay::GetSquareIdY()
 {
     return SquareIdY;
 }
+
 int GamePlay::GetX()
 {
     return x;
 }
+
 int GamePlay::GetY()
 {
     return y;
 }
+
 int GamePlay::GetPieceId()
 {
     return PieceId;
 }
+
 int GamePlay::SetSquareIdX(int X)
 {
     SquareIdX=X;
 }
+
 int GamePlay::SetSquareIdY(int Y)
 {
     SquareIdY=Y;
 }
+
 int GamePlay::SetX(int x)
 {
     x=x;
 }
+
 int GamePlay::SetY(int y)
 {
     y=y;
 }
+
 int GamePlay::SetPieceId(int id)
 {
     PieceId=id;
+}
+
+int GamePlay::IsInside(int MouseX, int MouseY, int length)
+{
+    if( ( MouseX > x && MouseX < x+length ) && ( MouseY < y && MouseY > y+length ) )
+        return 1;
+    return 0;
 }
