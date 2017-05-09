@@ -43,10 +43,10 @@ class Menu
         int IsInside(int MouseX, int MouseY);
 
         // to Add the Name with the font size and the font family, can be used to override if needed
-        int AddName(char TempName[], int TempFontSize = 14, char TempFontFamily[] = "GLUT_BITMAP_HELVETICA_")
+        int AddName(char TempName[]);
 
         // to add the coordnates (top left coordinate), can be use to override the previous / default value
-        int AddCoordinates(GLfloat tx, GLfloat ty, GLfloat th = 40, GLfloat tw = 100);
+        int AddCoordinates(GLfloat tx, GLfloat ty, GLfloat th, GLfloat tw);
 
         // to add action id to the object, can be used to override the the action if needed
         int AddActioId(int TempActionId);
@@ -57,9 +57,9 @@ class Menu
 };
 
 // Function to display menu
-void DisplayMenu(Menu *MenuObject);
+void DisplayMenu(Menu *MenuObject, int size);
 
 // Function to create menu
-void CreateMenu(Menu *MenuObject, char **MenuElementList, int ActionList, GLfloat tx, GLfloat ty, GLfloat Height, GLfloat Width);
+void CreateMenu(Menu *MenuObject, char (*MenuElementList)[20], int *ActionList, int size, GLfloat tx, GLfloat ty, GLfloat Height, GLfloat Width);
 
 #endif

@@ -22,6 +22,15 @@ int WindowsHeight = 670;
 int WindowsWidth = 1024;
 int ChessBoardSquareSize = 80;
 
+// Objects
+Menu MainMenu[5];
+
+// menu array
+char mainMenu[5][20]={"New Game","Save Game","Load Game","About","Exit"};
+
+// menu action array
+int ActionArray[5] = {0, 1, 2, 3, 4};
+
 void display()
 {
     // clear the screen
@@ -33,6 +42,8 @@ void display()
     // BasicShapes testobject;
     // glColor3f(0,1,0);
     // testobject.DrawArcFilled(100,100,90,0,6.3,100);
+
+    DisplayMenu(MainMenu, 5);
 
     ChessBoard Board;
     Board.DrawChessBoard(250,10,ChessBoardSquareSize);
@@ -61,6 +72,7 @@ int main(int argc, char* argv[])
     glutInitWindowPosition(0,0);
     glutCreateWindow(application_name);
 
+    CreateMenu(MainMenu, mainMenu, ActionArray, 5, 100, 600, 40, 100);
     //CreateMainMenu();
 
     glutDisplayFunc(display);

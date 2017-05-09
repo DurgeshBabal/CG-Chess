@@ -1,5 +1,5 @@
 CC=gcc
-CXX=g++
+CXX=g++-5 -std=c++11
 CFLAGS=
 CXXFLAGES=
 LDFLAGES= -lglut -lGL -lGLU
@@ -9,8 +9,8 @@ OUT=chess.app
 
 all: build
 
-build: main.o chessboard.o menu.o piece.o shapes.o
-	$(CXX) $(CXXFLAGES) main.cpp chessboard.cpp menu.cpp piece.cpp shapes.cpp -o $(OUT) $(LDFLAGES)
+build: main.o chessboard.o menu.o piece.o shapes.o text.o
+	$(CXX) $(CXXFLAGES) main.cpp chessboard.cpp menu.cpp piece.cpp shapes.cpp text.cpp -o $(OUT) $(LDFLAGES)
 	$(RM) *.o
 
 debug: CFLAGS+=-DDEBUG_ON
@@ -30,6 +30,9 @@ piece.o: piece.cpp piece.h
 
 shapes.o: shapes.cpp shapes.h
 	$(CXX) $(CXXFLAGES) -c shapes.cpp
+
+text.o: text.cpp text.h
+	$(CXX) $(CXXFLAGES) -c text.cpp
 
 clean:
 	$(RM) *.o $(OUT)

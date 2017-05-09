@@ -21,17 +21,15 @@ int Menu::IsInside(int MouseX, int MouseY)
     return 0;
 }
 
-int Menu::AddName(char TempName[], int TempFontSize = 14, char TempFontFamily[] = "GLUT_BITMAP_HELVETICA_")
+int Menu::AddName(char TempName[])
 {
     strcpy(Name, TempName);
-    FontSize = TempFontSize;
-    strcpy(FontFamily, TempFontFamily);
 
     // operation sucessfull so return true
     return 1;
 }
 
-int Menu::AddCoordinates(GLfloat tx, GLfloat ty, GLfloat th = 40, GLfloat tw = 100)
+int Menu::AddCoordinates(GLfloat tx, GLfloat ty, GLfloat th, GLfloat tw)
 {
     x = tx;
     y = ty;
@@ -53,31 +51,30 @@ void Menu::DisplayMenuElement()
 {
     BasicShapes ShapesObjects;
 
-    GLfloat Placeholder[] = {x,y, x+w,y, x+w,y-h, x,y-h};
+    GLfloat Placeholder[] = {x,y, x+w,y, x+w,y-(h-h/10), x,y-(h-h/10)};
 
     glColor3f(1,0,0);
     ShapesObjects.DrawQuad(Placeholder);
 
-    glColor3f(0,0,1);
+    glColor3f(1,1,1);
     DrawBitmapText(Name, x+(w/10), y-(h/2));
 
 }
 
-void DisplayMenu(Menu *MenuObject)
+void DisplayMenu(Menu *MenuObject, int size)
 {
-    for(auto MenuElement : MenuObject)
+    for (int i=0; i < size ; ++i)
     {
-        MenuElement.DisplayMenuElement()
+        MenuObject[i].DisplayMenuElement();
     }
 }
 
-void CreateMenu(Menu *MenuObject, char **MenuElementList, int ActionList, GLfloat tx, GLfloat ty, GLfloat Height, GLfloat Width)
+void CreateMenu(Menu *MenuObject, char (*MenuElementList)[20], int *ActionList, int size, GLfloat tx, GLfloat ty, GLfloat Height, GLfloat Width)
 {
-    int i = 0;
     GLfloat tempX = tx, tempY = ty;
-    for (auto MenuElement : MenuElementList)
+    for (int i=0; i < size ; ++i)
     {
-        MenuObject[i].AddName(MenuElement);
+        MenuObject[i].AddName(MenuElementList[i]);
         MenuObject[i].AddCoordinates(tempX, tempY, Height, Width);
         MenuObject[i].AddActioId(ActionList[i]);
         tempY = tempY - Height;
