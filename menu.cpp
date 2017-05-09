@@ -53,10 +53,11 @@ void Menu::DisplayMenuElement()
 
     GLfloat Placeholder[] = {x,y, x+w,y, x+w,y-(h-h/10), x,y-(h-h/10)};
 
-    glColor3f(1,0,0);
+    glColor3f((float)150/255, (float)0/255, (float)0/255); // box color
+    //glColor3f((float)(1/256), (float)(0/256), (float)(0/256)); // box color
     ShapesObjects.DrawQuad(Placeholder);
 
-    glColor3f(1,1,1);
+    glColor3f(1,1,1); // text color
     DrawBitmapText(Name, x+(w/10), y-(h/2));
 
 }

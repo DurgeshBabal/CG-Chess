@@ -10,8 +10,10 @@
 #include <math.h>
 
 // custom headers
+#include "action.h"
 #include "chessboard.h"
 #include "menu.h"
+#include "mouse.h"
 #include "piece.h"
 #include "shapes.h"
 
@@ -26,10 +28,22 @@ int ChessBoardSquareSize = 80;
 Menu MainMenu[5];
 
 // menu array
-char mainMenu[5][20]={"New Game","Save Game","Load Game","About","Exit"};
+char MainMenuList[5][20]={"New Game","Save Game","Load Game","About","Exit"};
 
 // menu action array
-int ActionArray[5] = {0, 1, 2, 3, 4};
+int MainMenuActionArray[5] = {1, 2, 3, 4, 5};
+
+void MouseInput(int button, int state, int x, int y)
+{
+    int temp;
+    if( button == GLUT_LEFT_BUTTON && state == GLUT_DOWN )
+    {
+        temp = MenuActionMouse(MainMenu, 5, x, WindowsHeight-y);
+        printf("x = %d, my = %d, caly = %d \n ", x, y, WindowsHeight-y);
+        if (temp > 0)
+            MenuAction(temp);
+    }
+}
 
 void display()
 {
@@ -72,10 +86,14 @@ int main(int argc, char* argv[])
     glutInitWindowPosition(0,0);
     glutCreateWindow(application_name);
 
-    CreateMenu(MainMenu, mainMenu, ActionArray, 5, 100, 600, 40, 100);
+    CreateMenu(MainMenu, MainMenuList, MainMenuActionArray, 5, 50, 650, 40, 100);
     //CreateMainMenu();
 
     glutDisplayFunc(display);
+
+    // mouse function
+    //glfwSetMousePos(WindowsWidth/2, WindowsHeight/2);
+    glutMouseFunc(MouseInput);
 
     // configuration settings
     glClearColor(0.5,0.5,0.5,0.5);      // set background a grey
