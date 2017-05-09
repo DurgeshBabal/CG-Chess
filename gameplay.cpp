@@ -7,14 +7,14 @@ int PieceIdArray[8] = {2,3,4,5,6,4,3,2};
 void Populate(int BoardX, int BoardY, int length, GamePlay BoardArray[8][8])
 {
 	int i,j,k=0;
-	for(i=7; i>-1; i++)
+	for(i=7; i>-1; i--)
 	{
 		for(j=0; j<8; j++)
 		{
 			BoardArray[i][j].SetSquareIdX(k+1);
 			BoardArray[i][j].SetSquareIdY(j+1);
-			BoardArray[i][j].SetX(BoardX + (k*length));
-			BoardArray[i][j].SetY(BoardY + (j*length));
+			BoardArray[i][j].SetX(BoardX + (j*length));
+			BoardArray[i][j].SetY(BoardY + (k*length));
 			if(k==0)
 			{
 				BoardArray[i][j].SetPieceId(PieceIdArray[j]);
@@ -78,13 +78,13 @@ int GamePlay::SetSquareIdY(int Y)
 {
     SquareIdY=Y;
 }
-int GamePlay::SetX(int x)
+int GamePlay::SetX(int X)
 {
-    x=x;
+    x=X;
 }
-int GamePlay::SetY(int y)
+int GamePlay::SetY(int Y)
 {
-    y=y;
+    y=Y;
 }
 int GamePlay::SetPieceId(int id)
 {
