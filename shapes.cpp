@@ -14,7 +14,7 @@ int BasicShapes::DrawTriangle(GLfloat *vertices)
     glDrawArrays(GL_TRIANGLES, 0, 3);
     // deactivate vertex arrays after drawing
     glDisableClientState(GL_VERTEX_ARRAY);
-    return 1;       // sucessful
+    return 1;       // successful
 }
 
 // vertices = {x1,y1,x2,y2,x3,y3,x4,y4};

@@ -12,8 +12,10 @@
 // custom headers
 #include "action.h"
 #include "chessboard.h"
+#include "gameplay.h"
 #include "menu.h"
 #include "mouse.h"
+#include "move.h"
 #include "piece.h"
 #include "shapes.h"
 
@@ -22,7 +24,12 @@
 char application_name[]="2D Chess";
 int WindowsHeight = 670;
 int WindowsWidth = 1024;
+
 int ChessBoardSquareSize = 80;
+int xstartcoordinate = 250;
+int ystartcoordinate = 10;
+
+GamePlay BoardArray[8][8];
 
 // Objects
 Menu MainMenu[5];
