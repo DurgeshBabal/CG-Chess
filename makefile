@@ -1,5 +1,5 @@
 CC=gcc
-CXX=g++-5 -std=c++11
+CXX=g++
 CFLAGS=
 CXXFLAGES=
 LDFLAGES= -lglut -lGL -lGLU
