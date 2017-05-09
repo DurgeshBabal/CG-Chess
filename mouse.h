@@ -2,8 +2,9 @@
 #ifndef MOUSE_H
 #define MOUSE_H
 
-void MenuAction(/* arguments */) {
-    /* code */
-}
+#include "menu.h"
+
+//void MouseInputFuntion();
+int MenuActionMouse(Menu *MenuObject, int size, int x, int y);
 
 #endif
