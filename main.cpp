@@ -10,9 +10,11 @@
 #include <math.h>
 
 // custom headers
+#include "action.h"
 #include "chessboard.h"
 #include "gameplay.h"
 #include "menu.h"
+#include "mouse.h"
 #include "move.h"
 #include "piece.h"
 #include "shapes.h"
@@ -28,6 +30,54 @@ int xstartcoordinate = 250;
 int ystartcoordinate = 10;
 
 GamePlay BoardArray[8][8];
+
+// Objects
+Menu MainMenu[5];
+
+// menu array
+char MainMenuList[5][20]={"New Game","Save Game","Load Game","About","Exit"};
+
+// menu action array
+int MainMenuActionArray[5] = {1, 2, 3, 4, 5};
+
+
+// board clicks
+int FirstClickI, FirstClickJ, SecondClickI, SecondClickJ, WaitingForSecondClick=0;
+
+
+void MouseInput(int button, int state, int x, int y)
+{
+    int temp;
+    if( button == GLUT_LEFT_BUTTON && state == GLUT_DOWN )
+    {
+        if (WaitingForSecondClick == 1) goto boardclick;
+        temp = MenuActionMouse(MainMenu, 5, x, WindowsHeight-y);
+        printf("x = %d, my = %d, caly = %d \n ", x, y, WindowsHeight-y);
+        if (temp > 0)
+            MenuAction(temp);
+
+        //  Check for click inside Board
+        boardclick:
+        if(temp == 0) // not clicked on menu
+        {
+            // if clicked on the Board
+            if( ( x > xstartcoordinate && x < xstartcoordinate+(8*ChessBoardSquareSize) ) && ( y < ystartcoordinate && y > ystartcoordinate+(8*ChessBoardSquareSize) ) )
+            {
+                for (int i = 0; i < n; ++i)
+                {
+                    for (int j = 0; j < n; ++j)
+                    {
+                        /* code */
+                    }
+                }
+                if (WaitingForSecondClick == 0)
+                {
+
+                }
+            }
+        }
+    }
+}
 
 void printBoardArray()
 {
@@ -98,6 +148,8 @@ void display()
     // clear the screen
     glClear(GL_COLOR_BUFFER_BIT);
 
+    DisplayMenu(MainMenu, 5);
+
     ChessBoard Board;
     Board.DrawChessBoard(xstartcoordinate,ystartcoordinate,ChessBoardSquareSize);
 
@@ -123,9 +175,14 @@ int main(int argc, char* argv[])
     glutInitWindowPosition(0,0);
     glutCreateWindow(application_name);
 
+    CreateMenu(MainMenu, MainMenuList, MainMenuActionArray, 5, 50, 650, 40, 100);
     //CreateMainMenu();
 
     glutDisplayFunc(display);
+
+    // mouse function
+    //glfwSetMousePos(WindowsWidth/2, WindowsHeight/2);
+    glutMouseFunc(MouseInput);
 
     // configuration settings
     glClearColor(0.5,0.5,0.5,0.5);      // set background a grey

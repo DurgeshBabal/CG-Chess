@@ -6,6 +6,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "shapes.h"
+#include "text.h"
+
 /*
     Name = Name of the Entry
     x, y = starting coordinate of the menu entry (top left corner)
@@ -20,12 +23,15 @@ class Menu
         char Name[20];
         GLfloat x;
         GLfloat y;
-        GLfloat l;
+        GLfloat h;
+        GLfloat w;
         int FontSize;
         char FontFamily[30];
         int ActionId;
+    protected:
+
     public:
-        // Menu();
+        Menu();
         //
         // ~Menu() = default;
         // Menu(const Menu& other) = default;
@@ -34,21 +40,26 @@ class Menu
         // Menu& operator=(Menu&& other) = default;
 
         // if the mouse clicked inside the menu then this function return ActionId else 0
-        int IsInside(int x, int y);
+        int IsInside(int MouseX, int MouseY);
 
         // to Add the Name with the font size and the font family, can be used to override if needed
-        int AddName(char TempName[], int TempFontSize, char TempFontFamily[]);
+        int AddName(char TempName[]);
 
-        // to add the coordnates (top left coordinate), can be use to override the previous value
-        int AddCoordinates(GLfloat tx, GLfloat ty, GLfloat tl);
+        // to add the coordnates (top left coordinate), can be use to override the previous / default value
+        int AddCoordinates(GLfloat tx, GLfloat ty, GLfloat th, GLfloat tw);
 
         // to add action id to the object, can be used to override the the action if needed
         int AddActioId(int TempActionId);
 
+        // function to generate the menu element
+        void DisplayMenuElement();
+
 };
 
-// Function to create a main menu
-void CreateMainMenu(Menu MainMenu[], GLfloat X, GLfloat Y, GLfloat);
+// Function to display menu
+void DisplayMenu(Menu *MenuObject, int size);
 
+// Function to create menu
+void CreateMenu(Menu *MenuObject, char (*MenuElementList)[20], int *ActionList, int size, GLfloat tx, GLfloat ty, GLfloat Height, GLfloat Width);
 
 #endif

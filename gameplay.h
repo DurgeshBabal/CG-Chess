@@ -88,6 +88,9 @@ class GamePlay
 
         int SetPieceId(int id);
 
+        // if the mouse clicked inside the board then this function return 1 else 0
+        int IsInside(int MouseX, int MouseY, int length);
+
 };
 
 //Generate the 2-D array which maps to the chessboard
