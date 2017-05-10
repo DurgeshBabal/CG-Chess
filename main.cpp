@@ -79,35 +79,90 @@ void MouseInput(int button, int state, int x, int y)
     }
 }
 
+void printBoardArray()
+{
+    for (int i = 0; i < 8; i++) {
+        for (int j=0; j < 8; j++) {
+            printf("SquareIdX: %d ",BoardArray[i][j].GetSquareIdX());
+            printf("SquareIdY: %d ",BoardArray[i][j].GetSquareIdY());
+            printf("X-coordinate: %d ",BoardArray[i][j].GetX());
+            printf("Y-coordinate: %d ",BoardArray[i][j].GetY());
+            printf("PieceId: %d \n",BoardArray[i][j].GetPieceId());
+        }
+    }
+}
+
+void generate(Piece PieceGenerate)
+{
+    int i,j;
+
+    for(i=0; i<8; i++)
+    {
+        for(j=0; j<8; j++)
+        {
+            switch(BoardArray[i][j].GetPieceId())
+            {
+                case -6:    glColor3f(0,0,0);
+                            PieceGenerate.King(BoardArray[i][j].GetX(), BoardArray[i][j].GetY(), ChessBoardSquareSize);
+                            break;
+                case -5:    glColor3f(0,0,0);
+                            PieceGenerate.Queen(BoardArray[i][j].GetX(), BoardArray[i][j].GetY(), ChessBoardSquareSize);
+                            break;
+                case -4:    glColor3f(0,0,0);
+                            PieceGenerate.Bishop(BoardArray[i][j].GetX(), BoardArray[i][j].GetY(), ChessBoardSquareSize);
+                            break;
+                case -3:    glColor3f(0,0,0);
+                            PieceGenerate.Knight(BoardArray[i][j].GetX(), BoardArray[i][j].GetY(), ChessBoardSquareSize);
+                            break;
+                case -2:    glColor3f(0,0,0);
+                            PieceGenerate.Rook(BoardArray[i][j].GetX(), BoardArray[i][j].GetY(), ChessBoardSquareSize);
+                            break;
+                case -1:    glColor3f(0,0,0);
+                            PieceGenerate.Pawn(BoardArray[i][j].GetX(), BoardArray[i][j].GetY(), ChessBoardSquareSize);
+                            break;
+                case 1:     glColor3f(1,1,1);
+                            PieceGenerate.Pawn(BoardArray[i][j].GetX(), BoardArray[i][j].GetY(), ChessBoardSquareSize);
+                            break;
+                case 2:     glColor3f(1,1,1);
+                            PieceGenerate.Rook(BoardArray[i][j].GetX(), BoardArray[i][j].GetY(), ChessBoardSquareSize);
+                            break;
+                case 3:     glColor3f(1,1,1);
+                            PieceGenerate.Knight(BoardArray[i][j].GetX(), BoardArray[i][j].GetY(), ChessBoardSquareSize);
+                            break;
+                case 4:     glColor3f(1,1,1);
+                            PieceGenerate.Bishop(BoardArray[i][j].GetX(), BoardArray[i][j].GetY(), ChessBoardSquareSize);
+                            break;
+                case 5:     glColor3f(1,1,1);
+                            PieceGenerate.Queen(BoardArray[i][j].GetX(), BoardArray[i][j].GetY(), ChessBoardSquareSize);
+                            break;
+                case 6:     glColor3f(1,1,1);
+                            PieceGenerate.King(BoardArray[i][j].GetX(), BoardArray[i][j].GetY(), ChessBoardSquareSize);
+                            break;
+            }
+        }
+    }
+}
+
 void display()
 {
     // clear the screen
     glClear(GL_COLOR_BUFFER_BIT);
 
-    // piece display
-    Piece TestPiece;
+    DisplayMenu(MainMenu, 5);
+
+    ChessBoard Board;
+    Board.DrawChessBoard(xstartcoordinate,ystartcoordinate,ChessBoardSquareSize);
+
+    Populate(xstartcoordinate, ystartcoordinate, ChessBoardSquareSize, BoardArray);
+
+    printBoardArray();
+
+    Piece PieceGenerate;
+    generate(PieceGenerate);
 
     // BasicShapes testobject;
     // glColor3f(0,1,0);
     // testobject.DrawArcFilled(100,100,90,0,6.3,100);
-
-    DisplayMenu(MainMenu, 5);
-
-    ChessBoard Board;
-    Board.DrawChessBoard(250,10,ChessBoardSquareSize);
-
-    // white side
-    glColor3f(1,1,1);
-
-    TestPiece.Knight(250,10,ChessBoardSquareSize);
-    TestPiece.Knight(250,10+ChessBoardSquareSize,ChessBoardSquareSize);
-
-    // black side
-    glColor3f(0,0,0);
-    TestPiece.Knight(250+ChessBoardSquareSize,10,ChessBoardSquareSize);
-    TestPiece.Knight(250+ChessBoardSquareSize,10+ChessBoardSquareSize,ChessBoardSquareSize);
-
-    // flush the buffer on the display
     glFlush();
 }
 
