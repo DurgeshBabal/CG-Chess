@@ -10,7 +10,6 @@
 #include <math.h>
 
 // custom headers
-#include "action.h"
 #include "chessboard.h"
 #include "gameplay.h"
 #include "menu.h"
@@ -64,9 +63,12 @@ void MouseInput(int button, int state, int x, int y)
     int temp = 0;
     if( button == GLUT_LEFT_BUTTON && state == GLUT_DOWN )
     {
+        printf("Click = %d\n", WaitingForSecondClick);
+        int clickedY = y;
+        y = WindowsHeight-y;
         if (WaitingForSecondClick == 1) goto boardclick;
-        temp = MenuActionMouse(MainMenu, 5, x, WindowsHeight-y);
-        printf("x = %d, my = %d, caly = %d \n ", x, y, WindowsHeight-y);
+        temp = MenuActionMouse(MainMenu, 5, x, y);
+        printf("x = %d, my = %d, caly = %d \n ", x, y, clickedY);
         if (temp > 0)
             MenuAction(temp);
 
@@ -74,44 +76,66 @@ void MouseInput(int button, int state, int x, int y)
         boardclick:
         if(temp == 0) // not clicked on menu
         {
-            // if clicked on the Board
-            if( ( x > xstartcoordinate && x < xstartcoordinate+(8*ChessBoardSquareSize) ) && ( y < ystartcoordinate && y > ystartcoordinate+(8*ChessBoardSquareSize) ) )
+            if (0)
             {
+                printf("x > xstartcoordinate  = %d \n x < xstartcoordinate+(8*ChessBoardSquareSize) = %d \n y > ystartcoordinate = %d \n y < ystartcoordinate+(8*ChessBoardSquareSize) = %d \n",x > xstartcoordinate, x < xstartcoordinate+(8*ChessBoardSquareSize), y > ystartcoordinate, y < ystartcoordinate+(8*ChessBoardSquareSize) );
+                printf("outside menu & going to board\n");
+            }
+
+            // if clicked on the Board
+            if( ( x > xstartcoordinate && x < xstartcoordinate+(8*ChessBoardSquareSize) ) && ( y > ystartcoordinate && y < ystartcoordinate+(8*ChessBoardSquareSize) ) )
+            {
+                printf("Clicked on board\n");
                 if (WaitingForSecondClick == 1)
                 {
+                    printf("Waiting For Second Click\n");
                     for (int i = 0; i < 8; ++i)
                     {
                         for (int j = 0; j < 8; ++j)
                         {
                             if (BoardArray[i][j].IsInside(x,y,ChessBoardSquareSize))
                             {
-                                SecondClickI = BoardArray[i][j].GetX();
-                                SecondClickJ = BoardArray[i][j].GetY();
+                                SecondClickI = BoardArray[i][j].GetSquareIdX();
+                                SecondClickJ = BoardArray[i][j].GetSquareIdY();
+                                printf("si = %d sj = %d\n", SecondClickI, SecondClickJ);
                                 // put the action here
-
+                                int temparry[] = {FirstClickI, FirstClickJ, SecondClickI, SecondClickJ};
+                                int tempMove = Move(temparry, BoardArray);
+                                printf("Move = %d\n",tempMove );
+                                if (tempMove)
+                                {
+                                    BoardArray[SecondClickI][SecondClickJ].SetPieceId(BoardArray[FirstClickI][FirstClickJ].GetPieceId());
+                                    BoardArray[FirstClickI][FirstClickJ].SetPieceId(0);
+                                }
+                                // reset the click
                                 WaitingForSecondClick = 0;
+                                printf("Click changed\n");
+                                glutPostRedisplay();
                             }
                         }
                     }
                 }
-
-                if (WaitingForSecondClick == 0)
+                else if (WaitingForSecondClick == 0)
                 {
+                    printf("Waiting For First Click\n");
                     for (int i = 0; i < 8; ++i)
                     {
                         for (int j = 0; j < 8; ++j)
                         {
                             if (BoardArray[i][j].IsInside(x,y,ChessBoardSquareSize))
                             {
-                                FirstClickI = BoardArray[i][j].GetX();
-                                FirstClickJ = BoardArray[i][j].GetY();
+                                FirstClickI = BoardArray[i][j].GetSquareIdX();
+                                FirstClickJ = BoardArray[i][j].GetSquareIdY();
+                                printf("fi = %d fj = %d\n", FirstClickI, FirstClickJ);
                                 WaitingForSecondClick = 1;
+                                glutPostRedisplay();
                             }
                         }
                     }
                 }
 
             }
+            else printf("Clicked outside board\n");
         }
     }
 }
@@ -192,7 +216,7 @@ void display()
 
     //Populate(xstartcoordinate, ystartcoordinate, ChessBoardSquareSize, BoardArray);
 
-    printBoardArray();
+    //printBoardArray();
 
     Piece PieceGenerate;
     generate(PieceGenerate);

@@ -3,14 +3,17 @@
 
 int PawnMove(GamePlay Square1, GamePlay Square2)
 {
+	printf("In PawnMove\n");
 	if(Square2.GetSquareIdX() != Square1.GetSquareIdX()+1)
 	{
+		printf("In PawnMove 1\n");
 		return 0;
 	}
 	else if(Square2.GetSquareIdY() == Square1.GetSquareIdY())
 	{
 		if(Square2.GetPieceId()!=0)
 		{
+			printf("In PawnMove 2\n");
 			return 0;
 		}
 	}
@@ -18,6 +21,7 @@ int PawnMove(GamePlay Square1, GamePlay Square2)
 	{
 		if(Square2.GetPieceId()>0)
 		{
+			printf("In PawnMove 3\n");
 			return 0;
 		}
 	}
@@ -234,6 +238,9 @@ int Move(int* arr, GamePlay BoardArray[8][8])
     GamePlay Square1 = BoardArray[arr[0]-1][arr[1]-1], Square2 = BoardArray[arr[2]-1][arr[3]-1];
     int returnvalue;
 
+	printf("Square1.GetPieceId() = %d\n", abs(Square1.GetPieceId()));
+	printf("Square2.GetPieceId() = %d\n", abs(Square2.GetPieceId()));
+	
 	switch(abs(Square1.GetPieceId()))
 	{
 		case 0:	returnvalue = 0;

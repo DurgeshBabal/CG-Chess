@@ -4,6 +4,7 @@
 
 #include "gameplay.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 //Determine if pawn can move to specified position or not
 int PawnMove(GamePlay Square1, GamePlay Square2);
@@ -24,6 +25,6 @@ int KingMove(GamePlay Square1, GamePlay Square2);
 int QueenMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8]);
 
 //Determine the specified chess piece and if it can move or not
-int Move(int* arr);
+int Move(int* arr, GamePlay BoardArray[8][8]);
 
 #endif

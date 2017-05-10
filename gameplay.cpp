@@ -103,7 +103,7 @@ int GamePlay::SetPieceId(int id)
 
 int GamePlay::IsInside(int MouseX, int MouseY, int length)
 {
-    if( ( MouseX > x && MouseX < x+length ) && ( MouseY < y && MouseY > y+length ) )
+    if( ( MouseX > x && MouseX < x+length ) && ( MouseY > y && MouseY < y+length ) )
         return 1;
     return 0;
 }
