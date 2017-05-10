@@ -8,24 +8,16 @@ void Populate(int BoardX, int BoardY, int length, GamePlay BoardArray[8][8], int
 {
 	if(ActionId == 1)
 	{
-		int i,j,k=0;
-		for(i=7; i>-1; i--)
+		int i,j;
+		for(i=0; i<8; i++)
 		{
 			for(j=0; j<8; j++)
 			{
-				BoardArray[i][j].SetSquareIdX(k+1);
-				BoardArray[i][j].SetSquareIdY(j+1);
+				BoardArray[i][j].SetSquareIdX(i);
+				BoardArray[i][j].SetSquareIdY(j);
 				BoardArray[i][j].SetX(BoardX + (j*length));
-				BoardArray[i][j].SetY(BoardY + (k*length));
-				if(k==0)
-				{
-					BoardArray[i][j].SetPieceId(PieceIdArray[j]);
-				}
-				else if(k==1)
-				{
-					BoardArray[i][j].SetPieceId(1);
-				}
-				else if(i==0)
+				BoardArray[i][j].SetY(BoardY + ((7-i)*length));
+				if(i==0)
 				{
 					BoardArray[i][j].SetPieceId(-1*PieceIdArray[j]);
 				}
@@ -33,9 +25,16 @@ void Populate(int BoardX, int BoardY, int length, GamePlay BoardArray[8][8], int
 				{
 					BoardArray[i][j].SetPieceId(-1);
 				}
+				else if(i==6)
+				{
+					BoardArray[i][j].SetPieceId(1);
+				}
+				else if(i==7)
+				{
+					BoardArray[i][j].SetPieceId(PieceIdArray[j]);
+				}
 				else	BoardArray[i][j].SetPieceId(0);
 			}
-			k++;
 		}
 	}
 	/*
