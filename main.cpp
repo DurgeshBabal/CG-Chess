@@ -41,7 +41,7 @@ int MainMenuActionArray[5] = {1, 2, 3, 4, 5};
 
 // board clicks
 int FirstClickI, FirstClickJ, SecondClickI, SecondClickJ, WaitingForSecondClick=0;
-
+/*
 void SaveGame()
 {
     FILE *open;
@@ -60,7 +60,7 @@ void SaveGame()
     }
     open.close();
 }
-
+*/
 void MenuAction(int ActionId)
 {
     switch(ActionId)
@@ -68,10 +68,10 @@ void MenuAction(int ActionId)
         case 1:Populate(xstartcoordinate, ystartcoordinate, ChessBoardSquareSize, BoardArray, ActionId);
             glutPostRedisplay();
             break;
-        case 2:SaveGame(); break;
-        case 3:Populate(xstartcoordinate, ystartcoordinate, ChessBoardSquareSize, BoardArray, ActionId);
+        //case 2:SaveGame(); break;
+        /*case 3:Populate(xstartcoordinate, ystartcoordinate, ChessBoardSquareSize, BoardArray, ActionId);
             glutPostRedisplay();
-            break;
+            break;*/
         case 4:break;
         case 5: exit(0);break;
         default:break;

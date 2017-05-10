@@ -38,6 +38,7 @@ void Populate(int BoardX, int BoardY, int length, GamePlay BoardArray[8][8], int
 			k++;
 		}
 	}
+	/*
 	else if(ActionId == 3)
 	{
 		FILE *open;
@@ -52,11 +53,12 @@ void Populate(int BoardX, int BoardY, int length, GamePlay BoardArray[8][8], int
 			for(j=0; j<8; j++)
 			{
 				open.read((char*)&temp,sizeof(temp))
-				BoardArray[i][j].copy(temp);
+				BoardArray[i][j].Copy(temp);
 			}
 		}
 		open.close();
 	}
+	*/
 }
 
 int GamePlay::GetSquareIdX()
@@ -109,7 +111,7 @@ void GamePlay::SetPieceId(int id)
     PieceId=id;
 }
 
-void GamePlay::Copy(Gameplay obj)
+void GamePlay::Copy(GamePlay obj)
 {
 	SquareIdX = obj.SquareIdX;
     SquareIdY = obj.SquareIdY;

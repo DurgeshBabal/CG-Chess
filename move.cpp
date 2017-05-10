@@ -235,12 +235,28 @@ int QueenMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8])
 
 int Move(int* arr, GamePlay BoardArray[8][8])
 {
-    GamePlay Square1.copy(BoardArray[arr[0]-1][arr[1]-1]), Square2.copy(BoardArray[arr[2]-1][arr[3]-1]);
-    int returnvalue;
+    GamePlay Square1,Square2;
+	Square1.Copy(BoardArray[8-arr[0]][arr[1]-1]);
+	Square2.Copy(BoardArray[8-arr[2]][arr[3]-1]);
+	int returnvalue;
 
-	printf("Square1.GetPieceId() = %d\n", abs(Square1.GetPieceId()));
-	printf("Square2.GetPieceId() = %d\n", abs(Square2.GetPieceId()));
-	
+	printf("Array[0] = %d\t",arr[0]);
+	printf("Array[1] = %d\t",arr[1]);
+	printf("Array[2] = %d\t",arr[2]);
+	printf("Array[3] = %d\n",arr[3]);
+
+	printf("Square1.GetSquareIdX() = %d\n", Square1.GetSquareIdX());
+	printf("Square1.GetSquareIdY() = %d\n", Square1.GetSquareIdY());
+	printf("Square1.GetX() = %d\n", Square1.GetX());
+	printf("Square1.GetY() = %d\n", Square1.GetY());
+	printf("Square1.GetPieceId() = %d\n", Square1.GetPieceId());
+
+	printf("Square2.GetSquareIdX() = %d\n", Square2.GetSquareIdX());
+	printf("Square2.GetSquareIdY() = %d\n", Square2.GetSquareIdY());
+	printf("Square2.GetX() = %d\n", Square2.GetX());
+	printf("Square2.GetY() = %d\n", Square2.GetY());
+	printf("Square2.GetPieceId() = %d\n", Square2.GetPieceId());
+
 	switch(abs(Square1.GetPieceId()))
 	{
 		case 0:	returnvalue = 0;

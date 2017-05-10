@@ -75,6 +75,6 @@ class GamePlay
 };
 
 //Generate the 2-D array which maps to the chessboard
-void Populate(int BoardX, int BoardY, int length, GamePlay BoardArray[8][8]);
+void Populate(int BoardX, int BoardY, int length, GamePlay BoardArray[8][8], int ActionId);
 
 #endif
