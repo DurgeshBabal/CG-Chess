@@ -14,24 +14,6 @@ PieceId's are as follows:
 -ve -> black
 */
 /*
-To do:
-Check notification
-Stalemate
-Checkmate
-Pawn turning to power unit at end of board
-Double square movement of pawn at beginning of game
-castling
-16 steps end game when all pieces lost or tied
-
-*/
-/*
-Variables to be declared:
-
-extern Check;
-extern Checkmate;
-hasmoved
-*/
-/*
 class SquareId
 {
    	int SquareIdX;
@@ -65,9 +47,6 @@ class GamePlay
 	int PieceId;
 
     public:
-        GamePlay();
-        GamePlay(const GamePlay &obj);
-
         int GetSquareIdX();
 
         int GetSquareIdY();
@@ -78,15 +57,17 @@ class GamePlay
 
         int GetPieceId();
 
-        int SetSquareIdX(int X);
+        void SetSquareIdX(int X);
 
-        int SetSquareIdY(int Y);
+        void SetSquareIdY(int Y);
 
-        int SetX(int x);
+        void SetX(int x);
 
-        int SetY(int y);
+        void SetY(int y);
 
-        int SetPieceId(int id);
+        void SetPieceId(int id);
+
+        void Copy(GamePlay obj);
 
         // if the mouse clicked inside the board then this function return 1 else 0
         int IsInside(int MouseX, int MouseY, int length);

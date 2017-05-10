@@ -29,7 +29,7 @@ int ChessBoardSquareSize = 80;
 int xstartcoordinate = 250;
 int ystartcoordinate = 10;
 
-GamePlay BoardArray[8][8];
+GamePlay BoardArray[8][8],temp;
 
 // Objects
 Menu MainMenu[5];
@@ -40,10 +40,27 @@ char MainMenuList[5][20]={"New Game","Save Game","Load Game","About","Exit"};
 // menu action array
 int MainMenuActionArray[5] = {1, 2, 3, 4, 5};
 
-
 // board clicks
 int FirstClickI, FirstClickJ, SecondClickI, SecondClickJ, WaitingForSecondClick=0;
 
+void SaveGame()
+{
+    FILE *open;
+    open = fopen("/savegame/save.bin", "w");
+    if(open<0)
+    {
+        cout<<"\nError in opening the savegame file for writing";
+        return;
+    }
+    for(i=0; i<8; i++)
+    {
+        for(j=0; j<8; j++)
+        {
+            open.write((char*)&BoardArray[i][j],sizeof(BoardArray[i][j]))
+        }
+    }
+    open.close();
+}
 
 void MouseInput(int button, int state, int x, int y)
 {

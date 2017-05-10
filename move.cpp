@@ -16,7 +16,7 @@ int PawnMove(GamePlay Square1, GamePlay Square2)
 	}
 	else if(Square2.GetSquareIdY() == Square1.GetSquareIdY()+1 || Square2.GetSquareIdY() == Square1.GetSquareIdY()-1)
 	{
-		if(Square2.GetPieceId()>0)
+		if(Square2.GetPieceId()*Square1.GetPieceId()>0)
 		{
 			return 0;
 		}
@@ -231,7 +231,7 @@ int QueenMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8])
 
 int Move(int* arr, GamePlay BoardArray[8][8])
 {
-    GamePlay Square1 = BoardArray[arr[0]-1][arr[1]-1], Square2 = BoardArray[arr[2]-1][arr[3]-1];
+    GamePlay Square1.copy(BoardArray[arr[0]-1][arr[1]-1]), Square2.copy(BoardArray[arr[2]-1][arr[3]-1]);
     int returnvalue;
 
 	switch(abs(Square1.GetPieceId()))

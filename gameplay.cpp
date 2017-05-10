@@ -4,51 +4,59 @@
 
 int PieceIdArray[8] = {2,3,4,5,6,4,3,2};
 
-void Populate(int BoardX, int BoardY, int length, GamePlay BoardArray[8][8])
+void Populate(int BoardX, int BoardY, int length, GamePlay BoardArray[8][8], int ActionId)
 {
-	int i,j,k=0;
-	for(i=7; i>-1; i--)
+	if(ActionId == 1)
 	{
-		for(j=0; j<8; j++)
+		int i,j,k=0;
+		for(i=7; i>-1; i--)
 		{
-			BoardArray[i][j].SetSquareIdX(k+1);
-			BoardArray[i][j].SetSquareIdY(j+1);
-			BoardArray[i][j].SetX(BoardX + (j*length));
-			BoardArray[i][j].SetY(BoardY + (k*length));
-			if(k==0)
+			for(j=0; j<8; j++)
 			{
-				BoardArray[i][j].SetPieceId(PieceIdArray[j]);
+				BoardArray[i][j].SetSquareIdX(k+1);
+				BoardArray[i][j].SetSquareIdY(j+1);
+				BoardArray[i][j].SetX(BoardX + (j*length));
+				BoardArray[i][j].SetY(BoardY + (k*length));
+				if(k==0)
+				{
+					BoardArray[i][j].SetPieceId(PieceIdArray[j]);
+				}
+				else if(k==1)
+				{
+					BoardArray[i][j].SetPieceId(1);
+				}
+				else if(i==0)
+				{
+					BoardArray[i][j].SetPieceId(-1*PieceIdArray[j]);
+				}
+				else if(i==1)
+				{
+					BoardArray[i][j].SetPieceId(-1);
+				}
+				else	BoardArray[i][j].SetPieceId(0);
 			}
-			else if(k==1)
-			{
-				BoardArray[i][j].SetPieceId(1);
-			}
-			else if(i==0)
-			{
-				BoardArray[i][j].SetPieceId(-1*PieceIdArray[j]);
-			}
-			else if(i==1)
-			{
-				BoardArray[i][j].SetPieceId(-1);
-			}
-			else	BoardArray[i][j].SetPieceId(0);
+			k++;
 		}
-		k++;
 	}
-}
-
-GamePlay::GamePlay()
-{
-
-}
-
-GamePlay::GamePlay(const GamePlay &obj)
-{
-    SquareIdX = obj.SquareIdX;
-    SquareIdY = obj.SquareIdY;
-    x = obj.x;
-    y = obj.y;
-    PieceId = obj.PieceId;
+	else if(ActionId == 3)
+	{
+		FILE *open;
+		open = fopen("/savegame/save.bin", "r");
+		if(open<0)
+		{
+			cout<<"\nError in opening the savegame file for reading";
+			return;
+		}
+		for(i=0; i<8; i++)
+		{
+			for(j=0; j<8; j++)
+			{
+				open.read((char*)&temp,sizeof(temp))
+				BoardArray[i][j].copy(temp);
+			}
+		}
+		open.close();
+	}
 }
 
 int GamePlay::GetSquareIdX()
@@ -76,29 +84,38 @@ int GamePlay::GetPieceId()
     return PieceId;
 }
 
-int GamePlay::SetSquareIdX(int X)
+void GamePlay::SetSquareIdX(int X)
 {
     SquareIdX=X;
 }
 
-int GamePlay::SetSquareIdY(int Y)
+void GamePlay::SetSquareIdY(int Y)
 {
     SquareIdY=Y;
 }
 
-int GamePlay::SetX(int X)
+void GamePlay::SetX(int X)
 {
     x=X;
 }
 
-int GamePlay::SetY(int Y)
+void GamePlay::SetY(int Y)
 {
     y=Y;
 }
 
-int GamePlay::SetPieceId(int id)
+void GamePlay::SetPieceId(int id)
 {
     PieceId=id;
+}
+
+void GamePlay::Copy(Gameplay obj)
+{
+	SquareIdX = obj.SquareIdX;
+    SquareIdY = obj.SquareIdY;
+    x = obj.x;
+    y = obj.y;
+    PieceId = obj.PieceId;
 }
 
 int GamePlay::IsInside(int MouseX, int MouseY, int length)
