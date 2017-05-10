@@ -44,10 +44,24 @@ int MainMenuActionArray[5] = {1, 2, 3, 4, 5};
 // board clicks
 int FirstClickI, FirstClickJ, SecondClickI, SecondClickJ, WaitingForSecondClick=0;
 
+void MenuAction(int ActionId)
+{
+    switch (ActionId)
+    {
+        case 1:Populate(xstartcoordinate, ystartcoordinate, ChessBoardSquareSize, BoardArray);
+            glutPostRedisplay();
+            break;
+        case 2:break;
+        case 3:break;
+        case 4:break;
+        case 5: exit(0);break;
+        default:break;
+    }
+}
 
 void MouseInput(int button, int state, int x, int y)
 {
-    int temp;
+    int temp = 0;
     if( button == GLUT_LEFT_BUTTON && state == GLUT_DOWN )
     {
         if (WaitingForSecondClick == 1) goto boardclick;
@@ -63,17 +77,40 @@ void MouseInput(int button, int state, int x, int y)
             // if clicked on the Board
             if( ( x > xstartcoordinate && x < xstartcoordinate+(8*ChessBoardSquareSize) ) && ( y < ystartcoordinate && y > ystartcoordinate+(8*ChessBoardSquareSize) ) )
             {
-                for (int i = 0; i < n; ++i)
+                if (WaitingForSecondClick == 1)
                 {
-                    for (int j = 0; j < n; ++j)
+                    for (int i = 0; i < 8; ++i)
                     {
-                        /* code */
+                        for (int j = 0; j < 8; ++j)
+                        {
+                            if (BoardArray[i][j].IsInside(x,y,ChessBoardSquareSize))
+                            {
+                                SecondClickI = BoardArray[i][j].GetX();
+                                SecondClickJ = BoardArray[i][j].GetY();
+                                // put the action here
+
+                                WaitingForSecondClick = 0;
+                            }
+                        }
                     }
                 }
+
                 if (WaitingForSecondClick == 0)
                 {
-
+                    for (int i = 0; i < 8; ++i)
+                    {
+                        for (int j = 0; j < 8; ++j)
+                        {
+                            if (BoardArray[i][j].IsInside(x,y,ChessBoardSquareSize))
+                            {
+                                FirstClickI = BoardArray[i][j].GetX();
+                                FirstClickJ = BoardArray[i][j].GetY();
+                                WaitingForSecondClick = 1;
+                            }
+                        }
+                    }
                 }
+
             }
         }
     }
@@ -153,7 +190,7 @@ void display()
     ChessBoard Board;
     Board.DrawChessBoard(xstartcoordinate,ystartcoordinate,ChessBoardSquareSize);
 
-    Populate(xstartcoordinate, ystartcoordinate, ChessBoardSquareSize, BoardArray);
+    //Populate(xstartcoordinate, ystartcoordinate, ChessBoardSquareSize, BoardArray);
 
     printBoardArray();
 

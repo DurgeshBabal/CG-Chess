@@ -9,15 +9,12 @@ OUT=chess.app
 
 all: build
 
-build: main.o action.o chessboard.o gameplay.o menu.o mouse.o move.o piece.o shapes.o text.o
-	$(CXX) $(CXXFLAGES) main.cpp action.cpp chessboard.cpp gameplay.cpp menu.cpp mouse.cpp move.cpp piece.cpp shapes.cpp text.cpp -o $(OUT) $(LDFLAGES)
+build: main.o chessboard.o gameplay.o menu.o mouse.o move.o piece.o shapes.o text.o
+	$(CXX) $(CXXFLAGES) main.cpp chessboard.cpp gameplay.cpp menu.cpp mouse.cpp move.cpp piece.cpp shapes.cpp text.cpp -o $(OUT) $(LDFLAGES)
 	$(RM) *.o
 
 debug: CFLAGS+=-DDEBUG_ON
 debug: build
-
-action.o: action.cpp action.h
-	$(CXX) $(CXXFLAGES) -c action.cpp
 
 chessboard.o: chessboard.cpp chessboard.h
 	$(CXX) $(CXXFLAGES) -c chessboard.cpp
