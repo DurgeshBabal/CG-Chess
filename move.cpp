@@ -235,12 +235,12 @@ int QueenMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8])
 
 int Move(int* arr, GamePlay BoardArray[8][8])
 {
-    GamePlay Square1.copy(BoardArray[arr[0]-1][arr[1]-1]), Square2.copy(BoardArray[arr[2]-1][arr[3]-1]);
+	GamePlay Square1 = BoardArray[arr[0]-1][arr[1]-1], Square2 = BoardArray[arr[2]-1][arr[3]-1];
     int returnvalue;
 
 	printf("Square1.GetPieceId() = %d\n", abs(Square1.GetPieceId()));
 	printf("Square2.GetPieceId() = %d\n", abs(Square2.GetPieceId()));
-	
+
 	switch(abs(Square1.GetPieceId()))
 	{
 		case 0:	returnvalue = 0;
