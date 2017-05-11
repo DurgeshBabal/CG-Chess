@@ -37,27 +37,54 @@ void Populate(int BoardX, int BoardY, int length, GamePlay BoardArray[8][8], int
 			}
 		}
 	}
-	/*
 	else if(ActionId == 3)
 	{
-		FILE *open;
-		open = fopen("/savegame/save.bin", "r");
-		if(open<0)
+		FILE *fp;
+	    fp = fopen("currentgame.save", "r");
+	    if(fp<0)
+	    {
+	        printf("Error in opening the savegame file for reading\n");
+	        return;
+	    }
+	    for(int i=0; i<8; i++)
+	    {
+	        for(int j=0; j<8; j++)
+	        {
+	            int DataToReaded[sizeof(GamePlay)];
+
+				fread(DataToReaded, sizeof(GamePlay), 5, fp);
+
+				printf("SquareIdX: %d ",DataToReaded[0]);
+	            printf("SquareIdY: %d ",DataToReaded[1]);
+	            printf("X-coordinate: %d ",DataToReaded[2]);
+	            printf("Y-coordinate: %d ",DataToReaded[3]);
+	            printf("PieceId: %d \n",DataToReaded[4]);
+
+				BoardArray[i][j].SetSquareIdX(DataToReaded[0]);
+	            BoardArray[i][j].SetSquareIdY(DataToReaded[1]);
+	            BoardArray[i][j].SetX(DataToReaded[2]);
+	            BoardArray[i][j].SetY(DataToReaded[3]);
+	            BoardArray[i][j].SetPieceId(DataToReaded[4]);
+
+	        }
+	    }
+		printf("DataToReaded and put into object\n");
+
+		for (int i = 0; i < 8; i++)
 		{
-			cout<<"\nError in opening the savegame file for reading";
-			return;
-		}
-		for(i=0; i<8; i++)
-		{
-			for(j=0; j<8; j++)
-			{
-				open.read((char*)&temp,sizeof(temp))
-				BoardArray[i][j].Copy(temp);
-			}
-		}
-		open.close();
+	       for (int j=0; j < 8; j++)
+		   {
+	            printf("SquareIdX: %d ",BoardArray[i][j].GetSquareIdX());
+	            printf("SquareIdY: %d ",BoardArray[i][j].GetSquareIdY());
+	            printf("X-coordinate: %d ",BoardArray[i][j].GetX());
+	            printf("Y-coordinate: %d ",BoardArray[i][j].GetY());
+	            printf("PieceId: %d \n",BoardArray[i][j].GetPieceId());
+	       }
+	    }
+		printf("Object Dumped\n");
+		fclose(fp);
 	}
-	*/
+	return ;
 }
 
 int GamePlay::GetSquareIdX()

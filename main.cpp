@@ -41,37 +41,65 @@ int MainMenuActionArray[5] = {1, 2, 3, 4, 5};
 
 // board clicks
 int FirstClickI, FirstClickJ, SecondClickI, SecondClickJ, WaitingForSecondClick=0;
-/*
+
 void SaveGame()
 {
-    FILE *open;
-    open = fopen("/savegame/save.bin", "w");
-    if(open<0)
+    printf("In Save Game\n");
+    FILE *fp;
+    fp = fopen("currentgame.save", "w+");
+    if(fp<0)
     {
-        cout<<"\nError in opening the savegame file for writing";
+        printf("Error in opening the savegame file for writing\n");
         return;
     }
-    for(i=0; i<8; i++)
+    for(int i = 0; i < 8; i++)
     {
-        for(j=0; j<8; j++)
+        for(int j = 0; j < 8; j++)
         {
-            open.write((char*)&BoardArray[i][j],sizeof(BoardArray[i][j]))
+            int DataToWrite[] ={BoardArray[i][j].GetSquareIdX(),
+                                 BoardArray[i][j].GetSquareIdY(),
+                                 BoardArray[i][j].GetX(),
+                                 BoardArray[i][j].GetY(),
+                                 BoardArray[i][j].GetPieceId()};
+            //printf("Object Size = %d Var size = %d\n", sizeof(GamePlay),sizeof(int));
+            printf("SquareIdX: %d ",DataToWrite[0]);
+            printf("SquareIdY: %d ",DataToWrite[1]);
+            printf("X-coordinate: %d ",DataToWrite[2]);
+            printf("Y-coordinate: %d ",DataToWrite[3]);
+            printf("PieceId: %d \n",DataToWrite[4]);
+
+            fwrite(DataToWrite, sizeof(GamePlay), 5, fp);
         }
     }
-    open.close();
+    fclose(fp);
 }
-*/
+
+void printBoardArray()
+{
+    for (int i = 0; i < 8; i++) {
+        for (int j=0; j < 8; j++) {
+            printf("SquareIdX: %d ",BoardArray[i][j].GetSquareIdX());
+            printf("SquareIdY: %d ",BoardArray[i][j].GetSquareIdY());
+            printf("X-coordinate: %d ",BoardArray[i][j].GetX());
+            printf("Y-coordinate: %d ",BoardArray[i][j].GetY());
+            printf("PieceId: %d \n",BoardArray[i][j].GetPieceId());
+        }
+    }
+}
+
 void MenuAction(int ActionId)
 {
     switch(ActionId)
     {
         case 1:Populate(xstartcoordinate, ystartcoordinate, ChessBoardSquareSize, BoardArray, ActionId);
             glutPostRedisplay();
+            printBoardArray();
             break;
-        //case 2:SaveGame(); break;
-        /*case 3:Populate(xstartcoordinate, ystartcoordinate, ChessBoardSquareSize, BoardArray, ActionId);
+        case 2:SaveGame(); break;
+        case 3:Populate(xstartcoordinate, ystartcoordinate, ChessBoardSquareSize, BoardArray, ActionId);
+            printf("In action \n");
             glutPostRedisplay();
-            break;*/
+            break;
         case 4:break;
         case 5: exit(0);break;
         default:break;
@@ -122,7 +150,7 @@ void MouseInput(int button, int state, int x, int y)
                                 int temparry[] = {FirstClickI, FirstClickJ, SecondClickI, SecondClickJ};
                                 int tempMove = Move(temparry, BoardArray);
                                 printf("Move = %d\n",tempMove );
-                                if (tempMove)
+                                if(tempMove)
                                 {
                                     BoardArray[SecondClickI][SecondClickJ].SetPieceId(BoardArray[FirstClickI][FirstClickJ].GetPieceId());
                                     BoardArray[FirstClickI][FirstClickJ].SetPieceId(0);
@@ -156,19 +184,6 @@ void MouseInput(int button, int state, int x, int y)
 
             }
             else printf("Clicked outside board\n");
-        }
-    }
-}
-
-void printBoardArray()
-{
-    for (int i = 0; i < 8; i++) {
-        for (int j=0; j < 8; j++) {
-            printf("SquareIdX: %d ",BoardArray[i][j].GetSquareIdX());
-            printf("SquareIdY: %d ",BoardArray[i][j].GetSquareIdY());
-            printf("X-coordinate: %d ",BoardArray[i][j].GetX());
-            printf("Y-coordinate: %d ",BoardArray[i][j].GetY());
-            printf("PieceId: %d \n",BoardArray[i][j].GetPieceId());
         }
     }
 }
@@ -234,16 +249,9 @@ void display()
     ChessBoard Board;
     Board.DrawChessBoard(xstartcoordinate,ystartcoordinate,ChessBoardSquareSize);
 
-    //Populate(xstartcoordinate, ystartcoordinate, ChessBoardSquareSize, BoardArray);
-
-    //printBoardArray();
-
     Piece PieceGenerate;
     generate(PieceGenerate);
 
-    // BasicShapes testobject;
-    // glColor3f(0,1,0);
-    // testobject.DrawArcFilled(100,100,90,0,6.3,100);
     glFlush();
 }
 

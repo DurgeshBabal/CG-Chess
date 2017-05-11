@@ -2,6 +2,7 @@
 #ifndef GAMEPLAY_H
 #define GAMEPLAY_H
 
+#include <stdio.h>
 /*
 PieceId's are as follows:
 1 -> pawn
