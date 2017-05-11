@@ -48,10 +48,6 @@ class GamePlay
 	int PieceId;
 
     public:
-        GamePlay();
-        
-        GamePlay(const GamePlay &obj);
-
         int GetSquareIdX();
 
         int GetSquareIdY();
@@ -72,7 +68,7 @@ class GamePlay
 
         void SetPieceId(int id);
 
-        //void Copy(GamePlay obj);
+        void Copy(GamePlay obj);
 
         // if the mouse clicked inside the board then this function return 1 else 0
         int IsInside(int MouseX, int MouseY, int length);
