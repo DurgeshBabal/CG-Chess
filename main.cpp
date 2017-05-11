@@ -209,7 +209,11 @@ void MouseInput(int button, int state, int x, int y)
                 }
 
             }
-            else printf("Clicked outside board\n");
+            else
+            {
+                printf("Clicked outside board\n");
+                WaitingForSecondClick = 0;
+            }
         }
     }
 }
@@ -265,6 +269,15 @@ void generate(Piece PieceGenerate)
     }
 }
 
+void HighlightBox(GLfloat x, GLfloat y)
+{
+    GLfloat Box[] = {x,y, x+ChessBoardSquareSize,y ,x+ChessBoardSquareSize,y+ChessBoardSquareSize, x,y+ChessBoardSquareSize};
+
+    BasicShapes HighlightedBox;
+
+    HighlightedBox.DrawQuadBorder(Box);
+}
+
 void display()
 {
     // clear the screen
@@ -277,6 +290,12 @@ void display()
 
     Piece PieceGenerate;
     generate(PieceGenerate);
+
+    if (WaitingForSecondClick == 1)
+    {
+        glColor3f(1,1,0);   // yellow color
+        HighlightBox(BoardArray[FirstClickI][FirstClickJ].GetX(),BoardArray[FirstClickI][FirstClickJ].GetY());
+    }
 
     glFlush();
 }
