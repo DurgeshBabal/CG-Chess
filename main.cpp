@@ -11,10 +11,12 @@
 
 // custom headers
 #include "chessboard.h"
+#include "event.h"
 #include "gameplay.h"
 #include "menu.h"
 #include "mouse.h"
 #include "move.h"
+#include "moveset.h"
 #include "piece.h"
 #include "shapes.h"
 
@@ -27,6 +29,7 @@ int WindowsWidth = 1024;
 int ChessBoardSquareSize = 80;
 int xstartcoordinate = 250;
 int ystartcoordinate = 10;
+int MoveSet[27][2];
 
 GamePlay BoardArray[8][8],temp;
 

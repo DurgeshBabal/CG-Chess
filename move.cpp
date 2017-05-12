@@ -59,10 +59,6 @@ int RookMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8])
 					if(BoardArray[i][j].GetPieceId()!=0)
 						break;
 				}
-				if(i!=Square2.GetSquareIdX())
-				{
-					return 0;
-				}
 			}
 			else
 			{
@@ -71,10 +67,10 @@ int RookMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8])
 					if(BoardArray[i][j].GetPieceId()!=0)
 						break;
 				}
-				if(i!=Square2.GetSquareIdX())
-				{
-					return 0;
-				}
+			}
+			if(i!=Square2.GetSquareIdX())
+			{
+				return 0;
 			}
 		}
 		else
@@ -87,10 +83,6 @@ int RookMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8])
 					if(BoardArray[i][j].GetPieceId()!=0)
 						break;
 				}
-				if(j!=Square2.GetSquareIdY())
-				{
-					return 0;
-				}
 			}
 			else
 			{
@@ -99,10 +91,10 @@ int RookMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8])
 					if(BoardArray[i][j].GetPieceId()!=0)
 						break;
 				}
-				if(j!=Square2.GetSquareIdY())
-				{
-					return 0;
-				}
+			}
+			if(j!=Square2.GetSquareIdY())
+			{
+				return 0;
 			}
 		}
 	}
@@ -155,10 +147,6 @@ int BishopMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8])
 				if(BoardArray[i][j].GetPieceId()!=0)
 					break;
 			}
-			if(i!=Square2.GetSquareIdX())
-			{
-				return 0;
-			}
 		}
 		else if(Square1.GetSquareIdX()<Square2.GetSquareIdX() && Square1.GetSquareIdY()>Square2.GetSquareIdY())
 		{
@@ -166,10 +154,6 @@ int BishopMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8])
 			{
 				if(BoardArray[i][j].GetPieceId()!=0)
 						break;
-			}
-			if(i!=Square2.GetSquareIdX())
-			{
-				return 0;
 			}
 		}
 		else if(Square1.GetSquareIdX()>Square2.GetSquareIdX() && Square1.GetSquareIdY()<Square2.GetSquareIdY())
@@ -179,10 +163,6 @@ int BishopMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8])
 				if(BoardArray[i][j].GetPieceId()!=0)
 						break;
 			}
-			if(i!=Square2.GetSquareIdX())
-			{
-				return 0;
-			}
 		}
 		else
 		{
@@ -191,10 +171,10 @@ int BishopMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8])
 				if(BoardArray[i][j].GetPieceId()!=0)
 						break;
 			}
-			if(i!=Square2.GetSquareIdX())
-			{
-				return 0;
-			}
+		}
+		if(i!=Square2.GetSquareIdX())
+		{
+			return 0;
 		}
 	}
 	return 1;
