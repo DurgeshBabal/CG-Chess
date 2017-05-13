@@ -4,6 +4,13 @@
 int PawnMove(GamePlay Square1, GamePlay Square2)
 {
 	printf("In PawnMove\n");
+	if(Square2.GetSquareIdY() == Square1.GetSquareIdY() && Square1.GetHasMoved()==0)
+	{
+		if(abs(Square2.GetSquareIdX()-Square1.GetSquareIdX())==2)
+		{
+			return 1;
+		}
+	}
 	if(Square1.GetPieceId()>0 && Square2.GetSquareIdX() != Square1.GetSquareIdX()-1)
 	{
 		printf("In PawnMove 1\n");
@@ -180,8 +187,9 @@ int BishopMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8])
 	return 1;
 }
 
-int KingMove(GamePlay Square1, GamePlay Square2)
+int KingMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8])
 {
+	int returnvalue;
 	if(abs(Square1.GetSquareIdX()-Square2.GetSquareIdX())>1 || abs(Square1.GetSquareIdY()-Square2.GetSquareIdY())>1)
 	{
 		return 0;
@@ -248,7 +256,7 @@ int Move(int* arr, GamePlay BoardArray[8][8])
 				break;
 		case 5: returnvalue = QueenMove(Square1, Square2, BoardArray);
 				break;
-		case 6: returnvalue = KingMove(Square1, Square2);
+		case 6: returnvalue = KingMove(Square1, Square2, BoardArray);
 				break;
 	}
 	return returnvalue;

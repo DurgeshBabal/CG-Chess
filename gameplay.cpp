@@ -34,6 +34,7 @@ void Populate(int BoardX, int BoardY, int length, GamePlay BoardArray[8][8], int
 					BoardArray[i][j].SetPieceId(PieceIdArray[j]);
 				}
 				else	BoardArray[i][j].SetPieceId(0);
+				BoardArray[i][j].SetHasMoved(0);
 			}
 		}
 	}
@@ -112,6 +113,11 @@ int GamePlay::GetPieceId()
     return PieceId;
 }
 
+int GamePlay::GetHasMoved()
+{
+	return HasMoved;
+}
+
 void GamePlay::SetSquareIdX(int X)
 {
     SquareIdX=X;
@@ -135,6 +141,11 @@ void GamePlay::SetY(int Y)
 void GamePlay::SetPieceId(int id)
 {
     PieceId=id;
+}
+
+void GamePlay::SetHasMoved(int moved)
+{
+	HasMoved=moved;
 }
 
 void GamePlay::Copy(GamePlay obj)
