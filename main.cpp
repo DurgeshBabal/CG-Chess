@@ -11,10 +11,12 @@
 
 // custom headers
 #include "chessboard.h"
+#include "event.h"
 #include "gameplay.h"
 #include "menu.h"
 #include "mouse.h"
 #include "move.h"
+#include "moveset.h"
 #include "piece.h"
 #include "shapes.h"
 
@@ -27,6 +29,10 @@ int WindowsWidth = 1024;
 int ChessBoardSquareSize = 80;
 int xstartcoordinate = 250;
 int ystartcoordinate = 10;
+int Check;
+int Stalemate;
+int Checkmate;
+int MoveSet[27][2];
 
 GamePlay BoardArray[8][8],temp;
 
@@ -149,6 +155,18 @@ void MouseInput(int button, int state, int x, int y)
                                 SecondClickI = BoardArray[i][j].GetSquareIdX();
                                 SecondClickJ = BoardArray[i][j].GetSquareIdY();
                                 printf("si = %d sj = %d\n", SecondClickI, SecondClickJ);
+
+                                if(BoardArray[FirstClickI][FirstClickJ].GetHasMoved()==0 && abs(BoardArray[FirstClickI][FirstClickJ].GetPieceId())==6)
+                            	{
+                                    if(abs(BoardArray[SecondClickI][SecondClickJ].GetSquareIdY()-BoardArray[FirstClickI][FirstClickJ].GetSquareIdY())==2)
+                                    {
+                                        GamePlay Square1,Square2;
+                                    	Square1.Copy(BoardArray[FirstClickI][FirstClickJ]);
+                                    	Square2.Copy(BoardArray[SecondClickI][SecondClickJ]);
+                                        Castling(Check, Square1, Square2, BoardArray);
+                                    }
+                                }
+
                                 // put the action here
                                 int temparry[] = {FirstClickI, FirstClickJ, SecondClickI, SecondClickJ};
                                 int tempMove = Move(temparry, BoardArray);
@@ -157,6 +175,7 @@ void MouseInput(int button, int state, int x, int y)
                                 {
                                     BoardArray[SecondClickI][SecondClickJ].SetPieceId(BoardArray[FirstClickI][FirstClickJ].GetPieceId());
                                     BoardArray[FirstClickI][FirstClickJ].SetPieceId(0);
+                                    BoardArray[SecondClickI][SecondClickJ].SetHasMoved(1);
                                 }
                                 // reset the click
                                 WaitingForSecondClick = 0;

@@ -4,6 +4,13 @@
 int PawnMove(GamePlay Square1, GamePlay Square2)
 {
 	printf("In PawnMove\n");
+	if(Square2.GetSquareIdY() == Square1.GetSquareIdY() && Square1.GetHasMoved()==0)
+	{
+		if(abs(Square2.GetSquareIdX()-Square1.GetSquareIdX())==2)
+		{
+			return 1;
+		}
+	}
 	if(Square1.GetPieceId()>0 && Square2.GetSquareIdX() != Square1.GetSquareIdX()-1)
 	{
 		printf("In PawnMove 1\n");
@@ -59,10 +66,6 @@ int RookMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8])
 					if(BoardArray[i][j].GetPieceId()!=0)
 						break;
 				}
-				if(i!=Square2.GetSquareIdX())
-				{
-					return 0;
-				}
 			}
 			else
 			{
@@ -71,10 +74,10 @@ int RookMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8])
 					if(BoardArray[i][j].GetPieceId()!=0)
 						break;
 				}
-				if(i!=Square2.GetSquareIdX())
-				{
-					return 0;
-				}
+			}
+			if(i!=Square2.GetSquareIdX())
+			{
+				return 0;
 			}
 		}
 		else
@@ -87,10 +90,6 @@ int RookMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8])
 					if(BoardArray[i][j].GetPieceId()!=0)
 						break;
 				}
-				if(j!=Square2.GetSquareIdY())
-				{
-					return 0;
-				}
 			}
 			else
 			{
@@ -99,10 +98,10 @@ int RookMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8])
 					if(BoardArray[i][j].GetPieceId()!=0)
 						break;
 				}
-				if(j!=Square2.GetSquareIdY())
-				{
-					return 0;
-				}
+			}
+			if(j!=Square2.GetSquareIdY())
+			{
+				return 0;
 			}
 		}
 	}
@@ -155,10 +154,6 @@ int BishopMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8])
 				if(BoardArray[i][j].GetPieceId()!=0)
 					break;
 			}
-			if(i!=Square2.GetSquareIdX())
-			{
-				return 0;
-			}
 		}
 		else if(Square1.GetSquareIdX()<Square2.GetSquareIdX() && Square1.GetSquareIdY()>Square2.GetSquareIdY())
 		{
@@ -166,10 +161,6 @@ int BishopMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8])
 			{
 				if(BoardArray[i][j].GetPieceId()!=0)
 						break;
-			}
-			if(i!=Square2.GetSquareIdX())
-			{
-				return 0;
 			}
 		}
 		else if(Square1.GetSquareIdX()>Square2.GetSquareIdX() && Square1.GetSquareIdY()<Square2.GetSquareIdY())
@@ -179,10 +170,6 @@ int BishopMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8])
 				if(BoardArray[i][j].GetPieceId()!=0)
 						break;
 			}
-			if(i!=Square2.GetSquareIdX())
-			{
-				return 0;
-			}
 		}
 		else
 		{
@@ -191,17 +178,18 @@ int BishopMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8])
 				if(BoardArray[i][j].GetPieceId()!=0)
 						break;
 			}
-			if(i!=Square2.GetSquareIdX())
-			{
-				return 0;
-			}
+		}
+		if(i!=Square2.GetSquareIdX())
+		{
+			return 0;
 		}
 	}
 	return 1;
 }
 
-int KingMove(GamePlay Square1, GamePlay Square2)
+int KingMove(GamePlay Square1, GamePlay Square2, GamePlay BoardArray[8][8])
 {
+	int returnvalue;
 	if(abs(Square1.GetSquareIdX()-Square2.GetSquareIdX())>1 || abs(Square1.GetSquareIdY()-Square2.GetSquareIdY())>1)
 	{
 		return 0;
@@ -268,7 +256,7 @@ int Move(int* arr, GamePlay BoardArray[8][8])
 				break;
 		case 5: returnvalue = QueenMove(Square1, Square2, BoardArray);
 				break;
-		case 6: returnvalue = KingMove(Square1, Square2);
+		case 6: returnvalue = KingMove(Square1, Square2, BoardArray);
 				break;
 	}
 	return returnvalue;

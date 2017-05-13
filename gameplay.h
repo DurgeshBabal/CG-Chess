@@ -14,31 +14,7 @@ PieceId's are as follows:
 +ve -> white
 -ve -> black
 */
-/*
-class SquareId
-{
-   	int SquareIdX;
-	int SquareIdY;
 
-	public:
-		int GetSquareIdX();
-        {
-        	return SquareIdX;
-        }
-        int GetSquareIdY();
-        {
-        	return SquareIdY;
-        }
-        int SetSquareIdX(int X);
-        {
-        	SquareIdX=X;
-        }
-        int SetSquareIdY(int Y);
-        {
-        	SquareIdY=Y;
-        }
-}
-*/
 class GamePlay
 {
     int SquareIdX;
@@ -46,6 +22,7 @@ class GamePlay
     int x;
 	int y;
 	int PieceId;
+    int HasMoved;
 
     public:
         int GetSquareIdX();
@@ -58,6 +35,8 @@ class GamePlay
 
         int GetPieceId();
 
+        int GetHasMoved();
+
         void SetSquareIdX(int X);
 
         void SetSquareIdY(int Y);
@@ -67,6 +46,8 @@ class GamePlay
         void SetY(int y);
 
         void SetPieceId(int id);
+
+        void SetHasMoved(int moved);
 
         void Copy(GamePlay obj);
 
