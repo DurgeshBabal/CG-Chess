@@ -22,6 +22,9 @@ class BasicShapes
         // vertices = {x1,y1,x2,y2,x3,y3,x4,y4}
         int DrawQuad(GLfloat *vertices);
 
+        // vertices = {x1,y1,x2,y2,x3,y3,x4,y4}
+        int DrawQuadBorder(GLfloat *vertices);
+
         // cx, cy = center x, y coordinates
         // r = radius
         // num_segments = number of segments it form to complete the circle (more segment better circle)
@@ -45,7 +48,7 @@ class BasicShapes
         // arc_angle = total angle for the arch
         // num_segments = number of segments it form to complete the circle (more segment better circle)
         int DrawArcFilled(float cx, float cy, float r, float start_angle, float arc_angle, int num_segments);
-        
+
 };
 
 #endif

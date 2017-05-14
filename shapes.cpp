@@ -31,6 +31,19 @@ int BasicShapes::DrawQuad(GLfloat *vertices)
     return 1;       // sucessful
 }
 
+int BasicShapes::DrawQuadBorder(GLfloat *vertices)
+{
+    // activate and specify pointer to vertex array
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glVertexPointer(2, GL_FLOAT, 0, vertices);
+    // draw a polygon
+    glDrawArrays(GL_LINE_LOOP, 0, 4);
+    // deactivate vertex arrays after drawing
+    glDisableClientState(GL_VERTEX_ARRAY);
+
+    return 1;       // sucessful
+}
+
 // cx, cy = center x, y coordinates
 // r = radius
 // num_segments = number of segments it form to complete the circle (more segment better circle)

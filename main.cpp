@@ -48,6 +48,9 @@ int MainMenuActionArray[5] = {1, 2, 3, 4, 5};
 // board clicks
 int FirstClickI, FirstClickJ, SecondClickI, SecondClickJ, WaitingForSecondClick=0;
 
+// move tracking
+int IsWhiteMove = 1;
+
 void SaveGame()
 {
     printf("In Save Game\n");
@@ -194,7 +197,30 @@ void MouseInput(int button, int state, int x, int y)
                                 FirstClickI = BoardArray[i][j].GetSquareIdX();
                                 FirstClickJ = BoardArray[i][j].GetSquareIdY();
                                 printf("fi = %d fj = %d\n", FirstClickI, FirstClickJ);
-                                WaitingForSecondClick = 1;
+                                if(BoardArray[i][j].GetPieceId() > 0)
+                                {
+                                    if (IsWhiteMove)
+                                    {
+                                        WaitingForSecondClick = 1;
+                                        IsWhiteMove = 0;
+                                    }
+                                    else
+                                        WaitingForSecondClick = 0;
+                                }
+                                else if(BoardArray[i][j].GetPieceId() < 0)
+                                {
+                                    if (IsWhiteMove)
+                                        WaitingForSecondClick = 0;
+                                    else
+                                    {
+                                        WaitingForSecondClick = 1;
+                                        IsWhiteMove = 1;
+                                    }
+                                }
+                                else if(BoardArray[i][j].GetPieceId()==0)
+                                    WaitingForSecondClick = 0;
+                                else
+                                    WaitingForSecondClick = 1;
                                 glutPostRedisplay();
                             }
                         }
@@ -202,7 +228,11 @@ void MouseInput(int button, int state, int x, int y)
                 }
 
             }
-            else printf("Clicked outside board\n");
+            else
+            {
+                printf("Clicked outside board\n");
+                WaitingForSecondClick = 0;
+            }
         }
     }
 }
@@ -258,6 +288,15 @@ void generate(Piece PieceGenerate)
     }
 }
 
+void HighlightBox(GLfloat x, GLfloat y)
+{
+    GLfloat Box[] = {x,y, x+ChessBoardSquareSize,y ,x+ChessBoardSquareSize,y+ChessBoardSquareSize, x,y+ChessBoardSquareSize};
+
+    BasicShapes HighlightedBox;
+
+    HighlightedBox.DrawQuadBorder(Box);
+}
+
 void display()
 {
     // clear the screen
@@ -270,6 +309,12 @@ void display()
 
     Piece PieceGenerate;
     generate(PieceGenerate);
+
+    if (WaitingForSecondClick == 1)
+    {
+        glColor3f(1,1,0);   // yellow color
+        HighlightBox(BoardArray[FirstClickI][FirstClickJ].GetX(),BoardArray[FirstClickI][FirstClickJ].GetY());
+    }
 
     glFlush();
 }
